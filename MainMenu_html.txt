@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=8" />
+		<meta http-equiv="Page-Enter" content="blendTrans(duration=.01)" />
+		<meta http-equiv="Page-Exit" content="blendTrans(duration=.01)" />
+ 
+	    <title>Terminal Application</title>
+        
+        <link href="/TerminalUI/Themes/otp-bank/CSS/core.css?v=20150218160622" rel="stylesheet" type="text/css" /><link href="/TerminalUI/Themes/otp-bank/CSS/core.ext.css?v=20141126100630" rel="stylesheet" type="text/css" />
+        <link href="/TerminalUI/Themes/otp-bank/CSS/btn_nav.css?v=20130624165100" rel="stylesheet" type="text/css" />
+        <link href="/TerminalUI/Themes/otp-bank/CSS/btn_move_shadowless.css?v=20130405134200" rel="stylesheet" type="text/css" />
+        <link href="/TerminalUI/Content/CSS/Scrollbar.css?v=20150226101124" rel="stylesheet" type="text/css" />
+            
+        
+        <link href="/TerminalUI/Content/CSS/Blocks/BillValidatorNotOperableBlock.css?v=20150226101124" rel="stylesheet" type="text/css" /><link href="/TerminalUI/Themes/otp-bank/CSS/Blocks/BillValidatorNotOperableBlock.ext.css?v=20140514134002" rel="stylesheet" type="text/css" />
+<link href="/TerminalUI/Themes/otp-bank/CSS/Pages/Home/MainMenu.css?v=20131009165100" rel="stylesheet" type="text/css" /><link href="/TerminalUI/Themes/otp-bank/CSS/Pages/Home/MainMenu.ext.css?v=20140624131512" rel="stylesheet" type="text/css" />
+ 
+ 
+        <script type="text/javascript" src="/terminalui/scripts/underscore-1.4.4.js?v=20150616171030"></script>
+	    <script type="text/javascript" src="/terminalui/scripts/utils/cookie.js?v=20150624100508"></script>
+	    <script type="text/javascript" src="/terminalui/scripts/settings.js?v=20150623151430"></script>
+        <script type="text/javascript" src="/terminalui/scripts/common.js?v=20150623151430"></script>
+        <script type="text/javascript" src="/terminalui/scripts/jquery-1.9.0.min.js?v=20150624100508"></script>
+        <script type="text/javascript" src="/terminalui/scripts/jquery.scrollto.js?v=20150624100508"></script>
+        <script type="text/javascript" src="/terminalui/scripts/events.js?v=20150624100422"></script>
+        <script type="text/javascript" src="/terminalui/scripts/dateup.js?v=20150624100508"></script>
+        <script type="text/javascript" src="/terminalui/scripts/listener.js?v=20150624100508"></script>
+        <script type="text/javascript" src="/terminalui/scripts/listenable.js?v=20150623151430"></script>
+        <script type="text/javascript" src="/terminalui/scripts/storagemanager.js?v=20150624100508"></script>
+        <script type="text/javascript" src="/terminalui/scripts/fieldsutil.js?v=20150624100508"></script>
+        <script type="text/javascript" src="/terminalui/scripts/smartclientcommunicator.js?v=20150624095002"></script>
+        <script type="text/javascript" src="/terminalui/scripts/smartclientmanager.js?v=20150624095002"></script>
+        <script type="text/javascript" src="/terminalui/scripts/cabinetmanager.js?v=20150624100508"></script>
+        <script type="text/javascript" src="/terminalui/scripts/cardmanager.js?v=20150624100508"></script>
+        <script type="text/javascript" src="/terminalui/scripts/navmanager.js?v=20150623151430"></script>
+        <script type="text/javascript" src="/terminalui/scripts/bootstrapper.js?v=20150623151430"></script>
+        <script type="text/javascript" src="/terminalui/scripts/utils/ajaxutil.js?v=20150624100508"></script>
+        <script type="text/javascript" src="/terminalui/scripts/services/ajaxservice.js?v=20150624100508"></script>
+        <script type="text/javascript" src="/terminalui/scripts/changesummanager.js?v=20150624100422"></script>
+        <script type="text/javascript" src="/terminalui/scripts/pages/layoutmisc.js?v=20150624095002"></script>
+ 
+        <script type="text/javascript">
+            var TerminalUISettings = TerminalUI.Settings = {"urlPushChangeSum":"/TerminalUI/ChangeSum/PushChangeSum.mvc","urlFetchChangeSum":"/TerminalUI/ChangeSum/FetchChangeSum.mvc","urlGetChangeSumBanner":"/TerminalUI/ChangeSum/ChangeSumBanner.mvc","dateShortPattern":"dd.MM.yyyy","dateLongPattern":"dd.MM.yyyy HH:mm:ss","numberDecimalSeparator":",","numberGroupSeparator":" ","GatewayErrorGeneralMessage":"При выполнении запроса произошла ошибка!"};         
+            var terminalUIConfig = TerminalUI.Config = {"General":{"InformationPagesPath":"C:\\Terminal\\Config\\info_ru.xml","OperatorsPath":"C:\\Terminal\\Config\\operators.xml","ServiceMenuPasswordHash":"","VersionFileVirtualPath":"~/version.txt","ImagesPath":"","Title":"Terminal Application","CurrencyPostfix":"руб.","XmlFileBasedStorageFileName":"C:\\Terminal\\Data\\PersistentStorage.xml","ChangeSumFile":"C:\\Terminal\\Data\\ChangeSum.xml","AutoDetectedMobileOperatorID":999,"MobileOperatorsPhonesRangeToDetectPath":"C:\\Terminal\\Config\\capa_num.xml","DealerInfoPath":"C:\\Terminal\\Config\\dealerInfo.xml","PointProfilePath":"C:\\Terminal\\Config\\PointProfile.xml","SessionNumLength":20,"AsyncOperationTimeout":40,"Theme":"Default","UIMessagesFilePath":"~/App_Data/UIMessages.xml","UISettingsPath":"~/App_Data/UISettings.xml","RegisterUISettingsAsJavaScriptConstants":true,"ChequeNumFilepath":"C:\\Terminal\\Data\\cheque_num.dat"},"NavigationButtons":{"FilePath":"~/App_Data/NavigationButtons.xml"},"Card":{"CaptureTimeout":120000,"CardInfosFilePath":"C:\\Terminal\\Config\\CardInfos.xml","OperatorsXmlCardTarget":"card_pay_services","BalanceOperatorName":"CARD_BALANCE","CheckCardExpirationDateEnabled":true,"EmulateBalance":false,"HandleAcceptPinPadButtonOnEnterPin":true,"ReinitPinPadOnAcceptButtonClick":true,"AuthorizationResponseCodesFilePath":"~/App_Data/card_auth_response_codes.xml","BalanceAmountFieldName":"BAL_AMOUNT","ResponseCodeFieldName":"RESPONSE_CODE"},"Devices":{"DeviceStateHandling":{"HandlePrinterState":false,"HandleBillValidatorState":true,"HandleWMCopyData":false},"BillValidator":{"ShowVirtualBar":true},"Printer":{"AlertPrinterText":false},"DeviceSetXmlFilePath":"C:\\Terminal\\Config\\device-set.xml"},"ChequeTemplates":{"FieldDisplayNameLength":0,"DirPath":"C:\\Terminal\\Config\\ChequeTemplates","PaymentErrorTemplateName":"payment-error.chq","CardPaymentErrorTemplateName":"card-payment-error.chq","CardPaymentStatusTemplate":"card-payment-status.chq","DefaultTemplateName":"default.chq"},"ImageMaps":{"RequiredImageMaps":{}},"HttpHandlers":{"ThemeResourceHandler":{"CacheableExtensions":".css,.js","CacheDuration":{"Ticks":315360000000000,"Days":365,"Hours":0,"Milliseconds":0,"Minutes":0,"Seconds":0,"TotalDays":365,"TotalHours":8760,"TotalMilliseconds":31536000000,"TotalMinutes":525600,"TotalSeconds":31536000},"AppendLastModifiedHeaderWhenCache":false,"ContentTypeByExtensionMappings":{}}},"HttpModules":{"ImageRevalidationModule":{"ImageExtensions":".png,.gif,.bmp,.jpg,.jpeg"},"ClientSideCachingModule":{"CacheableMimeTypes":""}},"SmartClientManager":{"RequestTimeout":{"Enabled":true,"Timeout":{"Ticks":600000000,"Days":0,"Hours":0,"Milliseconds":0,"Minutes":1,"Seconds":0,"TotalDays":0.00069444444444444436,"TotalHours":0.016666666666666666,"TotalMilliseconds":60000,"TotalMinutes":1,"TotalSeconds":60}}},"Payment":{},"TransportCardSuitableRoute":{"EmulationMode":false,"PayByCardEnabled":false},"Cabinet":{"PaymentChoiceIfCardTargetAvailableEnabled":false,"TargetOTP":"cabinet_otp"},"ActionFilters":{"ClientSideCache":{"CacheProfile":"","Enabled":false}},"Operators":{"TelecomGroupTarget":"","TelecomGroupTitle":"ТЕЛЕФОНИЯ"},"ChangeSum":{}};   
+            var SumLimitModes = TerminalUI.SumLimitModes = {"RestrictByPayAmount":0,"RestrictByEntireAmount":1};
+            var UISettingsMap = TerminalUI.UISettingsMap = {"AMOUNT_DIFF_REQUEST_ENABLED":"1","REQUIRED_FIELD_POSITION":"2","FORCE_SHOW_DLG_BARCODE":"1","DLG_BARCODE_TITLE":"Штрих код","DLG_BARCODE_DESCRIPTION":"Считайте штрих-код с помощью сканера или введите на клавиатуре","BTN_PUT_CASH_CHANGE_TITLE":"Внимание! Если у Вас денег меньше, чем сумма к внесению, Вы можете, нажав эту кнопку, выбрать другую услугу для оплаты.","TIMEOUT_ULTIMATE_MILLISECONDS":"600000","TIMEOUT_ULTIMATE_ENABLED":"1","INTERVAL_DEVICE_STATE_POLLING_MILLISECONDS":"60000","ENABLE_TRIPLE_SCREEN_TIMEOUT_ERROR":"0","TRIPLE_SCREEN_PANEL_TIMEOUT_TARGET_PAGE":"MainMenu","MAX_COUNT_SCREEN_PANEL_IDLE_TIMEOUT":"1","SHOW_FEEDBACK_STRIP_MAIN_MENU":"0","SHOW_FEEDBACK_STRIP_PAY_SERVICES":"0","SHOW_FEEDBACK_STRIP_GROUP_MENU":"0","SHOW_BANNER_TOP_MAIN_MENU":"1","SHOW_BANNER_TOP_PAY_SERVICES":"1","SHOW_BANNER_TOP_GROUP_MENU":"1","ADJUST_MAIN_MENU_BUTTONS_CENTER":"1","SHOW_WAIT_DLG_WHEN_CHECKING_OPERATOR_RECEIPT_REQUIREMENT":"0","NAVIGATING_SHOW_WAIT_DLG_ENABLED":"1","NAVIGATING_SHOW_SHADOW_ENABLED":"1","NAVIGATING_SHOW_SMTH_DELAY_MILLISECONDS":"1","DLG_IDLE_TIMEOUT_ENABLED":"1","DLG_IDLE_TIMEOUT_DENIED_PATHS":"/Home/MainMenu;/Home/Error;/Home/PrinterError;/Home/Unavailable;/Home/SuccessPayment","DLG_IDLE_TIMEOUT_CLIENT_ID":"dlgIdleTimeout","DLG_IDLE_TIMEOUT_TIMEOUT_MILLISECONDS":"15000","DLG_IDLE_TIMEOUT_SHOW_QUESTION_ICON":"1","Cabinet_BankServices_AccountItem_ShowDeskTypeName":"0","Cabinet_BankServices_AccountItem_Horizontal":"1","UIMessages_type_separator":";","DLG_MSG_AUTO_HEIGHT_ENABLED":"0","PAGE_GROUP_MENU_PAGING_MODE":"ServerSide","PAGE_GROUP_MENU_SERVERSIDE_PAGE_SIZE":"12","PAGING_MAX_PAGE_BTNS_SIZE":"3","MAIN_MENU_HEARTBEAT_ENABLED":"1","MAIN_MENU_HEARTBEAT_INTERVAL":"30000","SUCCESS_PAYMENT_TIMEOUT_MILLISECONDS":"5000","CHANGE_SUM_INFO_TIMEOUT_MILLISECONDS":"30000","BILL_VALIDATOR_MAX_SUM_BILL_ENABLED":"1","BILL_VALIDATOR_MAX_SUM_BILL_MAX_SUM_MODE":"MaxSum","SHOW_DLG_MAX_SUM_EXCEEDED":"1","SHOW_DLG_BILL_INVALID":"1","DLG_INVALID_BILL_TIMEOUT":"10000","DLG_MAX_SUM_EXCEEDED_TIMEOUT":"10000","CHANGE_SUM_AUTO_FLUSH_TIMEOUT":"45000","CHANGE_SUM_AUTO_FLUSH_PROVIDER_ID":"198806021615","CHANGE_SUM_AUTO_FLUSH_ENABLED":"0","CHANGE_SUM_PAGE_ENABLED":"1","CHANGE_SUM_INFO_PAGE_SHOW_SUCCESS_PAYMENT_BLOCK":"0","BILL_VALIDATOR_AUTO_CLOSE_ENABLED":"1","OMIT_BARCODE_SCANNER_NOT_OPERABLE":"1","SCROLL_STEP_OFFSET":"50","CARD_KCV_LENGTH":"6","CARD_TERMINAL_ID_LENGTH":"7","CABINET_DESK_TOP_GROUP_MENU_FORCE_SHOWN":"0","CABINET_DESK_TOP_GROUP_MENU_FORCE_HIDDEN":"1","BANK_CABINET_SHOW_ALL_ACCOUNTS_SINGLE_GROUP":"1","CABINET_RETURN_TO_DESK_AFTER_PAYMENT":"1","LOG_GUID_CHANGE_SUM":"cce7d90a-24ac-49ee-8908-c9ef7fc5d446","CLIENTSIDE_LOGGER_LEVEL":"debug;trace;info;warn;error;fatal","AUTO_PAYMENT_AFTER_TIMEOUT_ENABLED":"1","FORCED_PAYMENT_AFTER_TIMEOUT_ENABLED":"1","BILL_VALIDATOR_NOT_OPERABLE_BLOCK_ENABLED":"1","PAYMENT_GLOBAL_MAX_SUM_MODE":"RestrictByEntireAmount","PAYMENT_GLOBAL_MAX_SUM_ENABLED":"0","PAYMENT_GLOBAL_MAX_SUM":"15000","CONFIRM_TEXT_PRINTING":"0","PIN_PAD_ACTIONS_FOR_DLG_BTNS_ENABLED":"1","SAVE_MONEY_TO_CHANGESUM_ON_FAILED_PAYMENT":"0","PRINTER_TYPE":"TEXT","OPERATOR_TITLE_CARD_RECHARGE":"Пополнение карты","CARD_RECHARGE_FIELD_TITLE_CARD_NUMBER":"Номер карты","CARD_RECHARGE_FIELD_TITLE_BAL_AMOUNT":"Остаток средств","CARD_RECHARGE_PROPER_REQUEST_USED":"0","LABEL_BTN_CARD_RECHARGE":"Пополнить мою карту","LABEL_BTN_CARD_BALANCE":"Мой баланс"};
+            var UIMessageMap = TerminalUI.UIMessageMap = {"GENERAL_WAITING_MSG":"Пожалуйста, подождите...","GeneralError":"Операция не выполнена. Приносим свои извинения за доставленные неудобства.","OperatorsXmlFileNotFound":"Конфигурация не загружена.","RequiredImageMapsNotFound":"Изображения не загружены.","DeviceSetNotConfigured":"Устройства не настроены.","GatewayErrorGeneral":"При выполнении запроса произошла ошибка!","MaxSumExceeded":"Введенная сумма превышает допустимый лимит!","MaxSumExceededEntire":"Введенная сумма превышает допустимый лимит с учетом комиссии!","MinSumNotReached":"Введенная сумма менее минимально допустимой!","ReceiveCashSumInfoFriendly":"Внесите необходимую сумму по одной купюре в купюроприемник","CardOperationFailedGeneralMsgTemplate":"Операция не выполнена! {0}","CABINET_SendCabinetPasswordRequest_CommonError":"Ошибка сервера!","CABINET_LoadCabinetRequest_CommonError":"Не удалось проверить введенные данные!","CABINET_LoadCabinetRequest_InvalidFields_RemindPasswordViaSMS":"Неправильный пароль. Отправить пароль по смс?","DLG_IDLE_TIMEOUT_MSG":"\u003cbr /\u003e\r\n    Продолжить?\r\n    \u003cbr /\u003e\u003c!--\r\n    Ваш сеанс закончен в результате простоя.\r\n    \u003cbr /\u003e\r\n    \u003cbr /\u003e\r\n    Хотите продолжить операцию?\r\n    --\u003e","Gateway_ErrorCode_3":"Терминал не найден на сервере. Обратитесь в службу поддержки.","Gateway_ErrorCode_TerminalWasNotFoundOnTheServer":"Терминал не найден на сервере. Обратитесь в службу поддержки.","Gateway_ErrorCode_6":"Ошибка электронной подписи. Обратитесь в службу поддержки.","Gateway_ErrorCode_SignError":"Ошибка электронной подписи. Обратитесь в службу поддержки.","Gateway_ErrorCode_10":"Неверный формат сообщения. Обратитесь в службу поддержки.","Gateway_ErrorCode_InvalidMessageFormat":"Неверный формат сообщения. Обратитесь в службу поддержки.","Gateway_ErrorCode_15":"Неверный номер провайдера. Обратитесь в службу поддержки.","Gateway_ErrorCode_InvalidOperatorNumber":"Неверный номер провайдера. Обратитесь в службу поддержки.","Gateway_ErrorCode_23":"Неверные значения полей в данных платежа. Проверьте данные платежа.","Gateway_ErrorCode_InvalidFields":"Неверные значения полей в данных платежа. Проверьте данные платежа.","Gateway_ErrorCode_24":"Ошибка обмена данными с получателем платежа.","Gateway_ErrorCode_OperatorConnectionError":"Ошибка обмена данными с получателем платежа.","Gateway_ErrorCode_30":"Ошибка сервера. Обратитесь в службу поддержки.","Gateway_ErrorCode_ServerError":"Ошибка сервера. Обратитесь в службу поддержки.","Gateway_ErrorCode_134":"Отсутствует открытый ключ терминала. Обратитесь в службу поддержки.","Gateway_ErrorCode_TerminalPublicKeyIsMissing":"Отсутствует открытый ключ терминала. Обратитесь в службу поддержки.","Gateway_ErrorCode_1001":"Неизвестный тип запроса. Обратитесь в службу поддержки.","Gateway_ErrorCode_UnrecognizedRequestType":"Неизвестный тип запроса. Обратитесь в службу поддержки.","Gateway_ErrorCode_1002":"Ошибка в базе данных. Обратитесь в службу поддержки.","Gateway_ErrorCode_DBError":"Ошибка в базе данных. Обратитесь в службу поддержки.","Gateway_ErrorCode_1003":"Не найден счет/договор/карта.","Gateway_ErrorCode_UserWasNotFound":"Не найден счет/договор/карта.","Gateway_ErrorCode_1004":"Неверный телекод.","Gateway_ErrorCode_UserPasswordInvalid":"Неверный телекод.","Gateway_ErrorCode_1005":"Доступ по телекоду заблокирован. Обратитесь в службу поддержки.","Gateway_ErrorCode_UserIsBlocked":"Доступ по телекоду заблокирован. Обратитесь в службу поддержки.","Gateway_ErrorCode_1006":"Получатель платежа заблокирован. Обратитесь в службу поддержки.","Gateway_ErrorCode_OperatorIsBlockedForTheCurrentSubdealer":"Получатель платежа заблокирован. Обратитесь в службу поддержки.","Gateway_ErrorCode_1007":"Не установлен профиль для терминала. Обратитесь в службу поддержки.","Gateway_ErrorCode_TerminalProfileIsMissing":"Не установлен профиль для терминала. Обратитесь в службу поддержки.","Gateway_ErrorCode_1008":"Неизвестный запрос к шлюзу провайдера.","Gateway_ErrorCode_UnrecognizedRequestToOperatorGateway":"Неизвестный запрос к шлюзу провайдера.","Gateway_ErrorCode_1009":"Извините, счёт закрыт.","Gateway_ErrorCode_UserAccountIsClosed":"Извините, счёт закрыт.","Gateway_ErrorCode_1010":"Доступ по телекоду отключен. Обратитесь в службу поддержки.","Gateway_ErrorCode_InvalidOperation":"Доступ по телекоду отключен. Обратитесь в службу поддержки.","PAGE_INFORMATION_NAME":"Информация","PAGE_GROUP_MENU_NAME":"Список услуг группы {0}","PAGE_CABINET_SIGN_IN_PASSWORD":"Вход в Личный кабинет (ввод пароля)","LABEL_CONTACTS_STRIP_POINT_CODE":"Терминал","LABEL_CONTACTS_STRIP_AGENT_PHONE":"Телефон агента","LABEL_CONTACTS_STRIP_POINT_ADDRESS":"Адрес","DLG_TRANSPORT_CARD_SUITABLE_ROUTE_PAY_BY_CARD_DENIED":"Пополнение транспортной карты возможно только наличными денежными средствами","POINT_NUM_LABEL":"Терминал","POINT_ADDRESS_LABEL":"Адрес","LABEL_CARD_NUMBER":"Номер карты","LABEL_CARD_TERMINAL_ID":"Номер J терминала","LABEL_CARD_AUTH_CODE":"Код авторизации","TELECOM_OPERATOR_DETECTION_FAILED":"Не удалось определить оператора по введенным полям!","DLG_MOBILE_OPERATOR_DETECTION_FAILED_NAVIGATE_TELECOM_GROUP_PROMPT":"Не удалось определить оператора по введенным полям!\u003cbr /\u003e\u003cbr /\u003e\r\n    Перейти в группу ТЕЛЕФОНИЯ для ручного выбора?","SUCCESS_PAYMENT":"Операция выполнена успешно","SUCCESS_PAYMENT_GOOD_LUCK":"Желаем удачи!","CHANGE_SUM_ALERT":"Внимание! У Вас осталась сдача в размере \u003cstrong\u003e#CHANGE_SUM_VALUE# #CURRENCY_POSTFIX#\u003c/strong\u003e\u003cbr /\u003e\r\n        Выберите провайдера для зачисления на него вашей сдачи.","CHANGE_SUM_INFO_PAGE_ALERT":"Внимание! У Вас осталась сдача \u003cstrong\u003e#CHANGE_SUM_VALUE# #CURRENCY_POSTFIX#\u003c/strong\u003e\u003cbr /\u003e\r\n    Оплатите сдачей другую услугу.","REQUIRED_FIELD_MARK":"","REQUIRED_FIELDS_DESCRIPTION":"обязательные для заполнения поля","MAX_SUM_EXCEEDED_ALERT":"Превышен максимальный лимит суммы платежа!","INVALID_BILL":"Купюра не распознана!","CARD_READER_NOT_OPERABLE":"Кард-ридер не исправен!","ERROR_NAVIGATING_PRE":"Переход на страницу Ошибка по причине","ERROR_NAVIGATING_CARD_READER_NOT_OPERABLE":"Переход на страницу Ошибка по причине неисправности кард-ридера","ERROR_NAVIGATING_CARD_AUTHENTICATE_PINPAD_PARAM_NULL":"Переход на страницу Ошибка по причине получения одного из ключевых параметров от ПинПада #PARAM_NAME# со значением NULL","ERROR_NAVIGATING_CARD_INVALID_KCV":"Переход на страницу Ошибка по причине некорректного KCV #PARAM_VALUE#","ERROR_NAVIGATING_CARD_INVALID_TERMINAL_ID":"Переход на страницу Ошибка по причине некорректного TERMINAL_ID #PARAM_VALUE#","ERROR_NAVIGATING_MISSING_DEVICE_TYPES":"Переход на страницу Ошибка по причине отсутствующего необходимого оборудования #MISSING_DEVICE_TYPES#","ERROR_NAVIGATING_TRIPLE_TIMEOUT":"Переход на страницу Ошибка по причине превышения максимального числа (MAX_COUNT_SCREEN_PANEL_IDLE_TIMEOUT) сработанных таймаутов работы с терминалом","ERROR_NAVIGATING_REQUEST_TIMEOUT":"Переход на страницу Ошибка по причине таймаута на ожидание завершения асинхронного запроса #TARGET_ASYNC_METHOD#","ERROR_NAVIGATING_BILLVALIDATOR_NOT_OPERABLE":"Переход на страницу Ошибка по причине неработающего купюроприемника","ERROR_NAVIGATING_PRINTER_NOT_OPERABLE":"Переход на страницу Ошибка по причине неработающего принтера","ERROR_NAVIGATING_WMCOPYDATA_NOT_OPERABLE":"Переход на страницу Ошибка по причине неработающего протокола WM_COPY_DATA","ERROR_NAVIGATING_PINPAD_NOT_OPERABLE":"Переход на страницу Ошибка по причине неисправности устройства ПинПад или его модулей","ERROR_NAVIGATING_FAILED_PAYMENT":"Переход на страницу Ошибка по причине неуспешной регистрации платежа на терминале","ERROR_NAVIGATING_FAILED_BALANCE_GET":"Переход на страницу Ошибка по причине неуспешного получения значения баланса на пластиковой банковской карте","LOG_MSG_CHANGE_SUM_PROVIDER_MISSING":"Провайдер #CHANGE_SUM_AUTO_FLUSH_PROVIDER_ID# для авто-записи сдачи на сервер отсутствует в конфигурации! Сдача равна #CHANGE_SUM# #LOG_GUID#","LOG_MSG_BTN_PUT_CASH_CHANGE_CLICK":"Нажата кнопка \"Перевести средства на сдачу и выбрать другую услугу\"","LOG_MSG_START_PAGE_NAVIGATING_PRE":"Переход на стартовую страницу по причине","NAVIGATE_START_DUE_TO_CANCEL_PAYMENT":"Переход на стартовую страницу по причине выбора другой услуги для оплаты с сохранением внесенной суммы на сдаче","LOG_MSG_START_PAGE_NAVIGATING_SCREEN_PANEL_CALLBACK":"Переход на стартовую страницу по причине срабатывания таймаута простоя терминала","LOG_MSG_START_PAGE_NAVIGATING_BTN_DLG_BILL_VALIDATOR_NOT_OPERABLE_OK_CLICK":"Переход на стартовую страницу по причине нажатия на кнопку ОК диалога о предупреждении о неработающем купюроприемнике","LOG_MSG_START_PAGE_NAVIGATING_PINPAD_CANCEL_PRESSED":"Переход на стартовую страницу по причине нажатия на кнопку Отмена на Пин-Пад","LOG_MSG_START_PAGE_NAVIGATING_TRANSPORT_CARD_SUIT_ROUTE_NAVIGATE_AWAY_INVOKED":"Переход на стартовую страницу по причине срабатывания метода navigateAway","LOG_MSG_START_PAGE_NAVIGATING_ULTIMATE_TIMEOUT":"срабатывания конечного таймаута","ULTIMATE_TIMEOUT_TRIGGERRED":"Произошел конечный таймаут работы теримнала","LOG_MSG_SUCCESS_PAYMENT_NAVIGATING":"Переход на страницу Успешный платеж","LOG_MSG_SHOW_DLG_IDLE_TIMEOUT":"Отображение диалога о простое работы с терминалом","LOG_MSG_HIDE_DLG_IDLE_TIMEOUT":"Скрытие диалога о простое работы с терминалом","AUTO_PAYMENT_AFTER_TIMEOUT_ENABLED_INFO":"Автоплатеж при таймауте ВКЛЮЧЕН","AUTO_PAYMENT_AFTER_TIMEOUT_PROCESSING":"Выполняется автоплатеж при таймауте...","AUTO_PAYMENT_AFTER_TIMEOUT_PROCESSED":"Автоплатеж при таймауте выполнен","AUTO_PAYMENT_AFTER_TIMEOUT_UNABLE_DUE_TO_AMOUNT":"Автоплатеж при таймауте невозможен по причине недостаточной суммы для выполнения платежа","BILL_VALIDATOR_NOT_OPERABLE_BLOCK_MSG":"Оплата наличными недоступна.","LOG_MSG_BILL_VALIDATOR_NOT_OPERABLE_BLOCK_SHOWING":"Отображение блока-сообщения о невозможности принятия купюр по причине не действующего купюроприемника","CONFIRM_TEXT_PRINTING":"Распечатать чек на принтере?","LOG_STATE_NAVIGATE_START_DUE_BTN_PUT_CHANGE_SUM_CLICK":"Переход на стартовую страницу по причине нажатия на кнопку сброса доступных и внесенных денежных средств на сдачу...","LOG_STATE_NAVIGATE_START_CASH_RECEIVE_COMMON":"Переход на стартовую страницу по причине со страницы оплаты услуги наличными средствами путем внесения купюр в купюроприемник...","LOG_STATE_NAVIGATE_START_DUE_BILL_VALIDATOR_NOT_OPERABLE_OK_CLICK_CHANGE_SUM_EMPTY":"Переход на стартовую страницу по причине нажатия на кнопку ОК диалога с сообщением о неработающем купюроприемнике и отсутствием средств для оплаты...","LOG_STATE_NAVIGATE_START_DUE_BILL_VALIDATOR_NOT_OPERABLE_OK_CLICK_CHANGE_SUM_LESS_REQUIRED_SUM":"Переход на стартовую страницу по причине нажатия на кнопку ОК диалога с сообщением о неработающем купюроприемнике с наличием сдачи, но меньшей чем необходимо для платежа...","LOG_BTN_CARD_BALANCE_CLICK":"Нажата кнопка получения баланса по банковской карте","LOG_CARD_BALANCE_REQUEST_OBTAINING":"Запрос на получение баланса по банковской карте #CARD_NUMBER#...","LOG_CARD_BALANCE_REQUEST_SUCCESS":"Выполнен запрос на получение баланса (#BALANCE_VAL#) по банковской карте #CARD_NUMBER#","LOG_CARD_BALANCE_REQUEST_FAILED":"Не удалось выполнить запрос на получение баланса по банковской карте #CARD_NUMBER#. Ошибка: #ERROR_MSG#","LOG_BTN_CARD_RECHARGE_CLICK":"Нажата кнопка пополнения банковской карты"};
+            var VERSION = TerminalUI.Version = "CEF.15.06.24";
+        </script>
+        <script type="text/javascript">
+            FS.GatewayErrorCodes = FS.GatewayErrorCodes = FS.Gateway.ErrorCodes = TerminalUI.GatewayErrorCodes = {"TerminalWasNotFoundOnTheServer":3,"SignError":6,"InvalidMessageFormat":10,"InvalidOperatorNumber":15,"InvalidFields":23,"OperatorConnectionError":24,"ServerError":30,"TerminalPublicKeyIsMissing":134,"UnrecognizedRequestType":1001,"DBError":1002,"UserWasNotFound":1003,"UserPasswordInvalid":1004,"UserIsBlocked":1005,"OperatorIsBlockedForTheCurrentSubdealer":1006,"TerminalProfileIsMissing":1007,"UnrecognizedRequestToOperatorGateway":1008,"UserAccountIsClosed":1009,"InvalidOperation":1010};
+            FS.GatewayResultCodes = FS.Gateway.ResultCodes = FS.GatewayResultCodes = {"Success":0,"Error":1};
+            FS.GatewayRequestTypes = FS.GatewayRequestTypes = FS.Gateway.RequestTypes = {"CheckRequisitiesRequest":1,"RegisterPaymentRequest":3,"LoadInfoRequest":5,"CheckPayRequest":13,"AddCabinetAccountRequest":20,"RemoveCabinetAccountRequest":21,"RemoveProviderAccountsRequest":22,"LoadCabinetHistoryRequest":24,"LoadCabinetRequest":26,"SendCabinetPasswordRequest":40,"LoadOTPCabinetRequest":126,"GetCardBalanceRequest":710,"PayCardRequest":720,"RechargeCardRequest":730,"PointHeartbeatRequest":1060};
+        </script>
+        <script type="text/javascript" src="/terminalui/scripts/utils/dlgmanager.js?v=20150623151430"></script>
+        <script type="text/javascript" src="/terminalui/scripts/operatorfieldsformmanager.js?v=20150624100508"></script>
+        <script type="text/javascript" src="/terminalui/scripts/services/loggingservice.js?v=20150624100508"></script>
+        <script type="text/javascript" src="/terminalui/scripts/devices/devicemanager.js?v=20150623151430"></script>
+        <script type="text/javascript" src="/terminalui/scripts/devices/devicetypemissingchecker.js?v=20150623151430"></script>
+        <script type="text/javascript">
+            var _currentDeviceSet = TerminalUI.CurrentDeviceSet = [{"TypeDisplayName":"Купюроприемник","TypeName":"BillValidator","Name":"BillValidator.CashCode.CCNET","ServiceName":"BillValidatorService","ServiceExeFileName":"C:\\Terminal\\Services\\BillValidatorService\\BillValidatorCCNET\\BillValidatorCCNETService.exe","ServiceExeArguments":"","AutoConfigurable":true,"PortInfo":{"PortName":"COM1","BaudRate":9600,"Parity":"None","DataBits":8,"StopBitsForSerializer":"One","StopBits":1}},{"TypeDisplayName":"Кард-Ридер","TypeName":"CardReader","Name":"CardReader.Sankyo.ICT3K5","ServiceName":"CardReaderService","ServiceExeFileName":"C:\\Terminal\\Services\\CardReaderService\\CardReaderSankyoICT3K5\\CardReaderService.exe","ServiceExeArguments":"","AutoConfigurable":true,"PortInfo":{"PortName":"COM5","BaudRate":9600,"Parity":"Even","DataBits":8,"StopBitsForSerializer":"One","StopBits":1}},{"TypeDisplayName":"ПинПад","TypeName":"PinPad","Name":"PinPad.ZT.588CA","ServiceName":"PinPadService","ServiceExeFileName":"C:\\Terminal\\Services\\PinPadService\\PinPadZT588CA\\PinPadService.exe","ServiceExeArguments":"","AutoConfigurable":true,"PortInfo":{"PortName":"COM3","BaudRate":19200,"Parity":"None","DataBits":8,"StopBitsForSerializer":"One","StopBits":1}},{"TypeDisplayName":"Принтер","TypeName":"Printer","Name":"Printer.Custom.VKP80","ServiceName":"PrinterService","ServiceExeFileName":"C:\\Terminal\\Services\\PrinterService\\PrinterCustomVKP80\\PrinterCustomVKP80Service.exe","ServiceExeArguments":"","AutoConfigurable":true,"PortInfo":{"PortName":"COM4","BaudRate":115200,"Parity":"None","DataBits":8,"StopBitsForSerializer":"One","StopBits":1}},{"TypeDisplayName":"Сканер Штрих-Кодов","TypeName":"BarcodeScanner","Name":"Scanner","ServiceName":"BarcodeScannerService","ServiceExeFileName":"C:\\Terminal\\Services\\BarcodeScannerService\\BarcodeScanner\\BarcodeScannerService.exe","ServiceExeArguments":"","AutoConfigurable":false,"PortInfo":{"ReadTimeout":0,"DelayResponse":100,"DiscardZeroBytes":true,"PortName":"COM9","BaudRate":9600,"Parity":"None","DataBits":8,"StopBitsForSerializer":"One","StopBits":1}}];
+            initDeviceSet(_currentDeviceSet);
+        </script>
+ 
+        <script type="text/javascript"> 
+var NUMBER_DECIMAL_SEPARATOR = ",",
+NUMBER_GROUP_SEPARATOR = " ",
+IS_FIRST_APP_RUN = false,
+URL_COMPUTE_OPERATOR_COMISSION = "/TerminalUI/Operator/ComputeComissionJson.mvc",
+URL_PARSE_INVOICE_TEMPLATE = "/TerminalUI/Home/GetFieldsMapByAnswerData/_TARGET_OPERATOR_ID_.mvc",
+AMOUNT_DIFF_REQUEST_ENABLED = "1",
+REQUIRED_FIELD_POSITION = "2",
+FORCE_SHOW_DLG_BARCODE = "1",
+DLG_BARCODE_TITLE = "Штрих код",
+DLG_BARCODE_DESCRIPTION = "Считайте штрих-код с помощью сканера или введите на клавиатуре",
+BTN_PUT_CASH_CHANGE_TITLE = "Внимание! Если у Вас денег меньше, чем сумма к внесению, Вы можете, нажав эту кнопку, выбрать другую услугу для оплаты.",
+TIMEOUT_ULTIMATE_MILLISECONDS = "600000",
+TIMEOUT_ULTIMATE_ENABLED = "1",
+INTERVAL_DEVICE_STATE_POLLING_MILLISECONDS = "60000",
+ENABLE_TRIPLE_SCREEN_TIMEOUT_ERROR = "0",
+TRIPLE_SCREEN_PANEL_TIMEOUT_TARGET_PAGE = "MainMenu",
+MAX_COUNT_SCREEN_PANEL_IDLE_TIMEOUT = "1",
+SHOW_FEEDBACK_STRIP_MAIN_MENU = "0",
+SHOW_FEEDBACK_STRIP_PAY_SERVICES = "0",
+SHOW_FEEDBACK_STRIP_GROUP_MENU = "0",
+SHOW_BANNER_TOP_MAIN_MENU = "1",
+SHOW_BANNER_TOP_PAY_SERVICES = "1",
+SHOW_BANNER_TOP_GROUP_MENU = "1",
+ADJUST_MAIN_MENU_BUTTONS_CENTER = "1",
+SHOW_WAIT_DLG_WHEN_CHECKING_OPERATOR_RECEIPT_REQUIREMENT = "0",
+NAVIGATING_SHOW_WAIT_DLG_ENABLED = "1",
+NAVIGATING_SHOW_SHADOW_ENABLED = "1",
+NAVIGATING_SHOW_SMTH_DELAY_MILLISECONDS = "1",
+DLG_IDLE_TIMEOUT_ENABLED = "1",
+DLG_IDLE_TIMEOUT_DENIED_PATHS = "/Home/MainMenu;/Home/Error;/Home/PrinterError;/Home/Unavailable;/Home/SuccessPayment",
+DLG_IDLE_TIMEOUT_CLIENT_ID = "dlgIdleTimeout",
+DLG_IDLE_TIMEOUT_TIMEOUT_MILLISECONDS = "15000",
+DLG_IDLE_TIMEOUT_SHOW_QUESTION_ICON = "1",
+Cabinet_BankServices_AccountItem_ShowDeskTypeName = "0",
+Cabinet_BankServices_AccountItem_Horizontal = "1",
+UIMessages_type_separator = ";",
+DLG_MSG_AUTO_HEIGHT_ENABLED = "0",
+PAGE_GROUP_MENU_PAGING_MODE = "ServerSide",
+PAGE_GROUP_MENU_SERVERSIDE_PAGE_SIZE = "12",
+PAGING_MAX_PAGE_BTNS_SIZE = "3",
+MAIN_MENU_HEARTBEAT_ENABLED = "1",
+MAIN_MENU_HEARTBEAT_INTERVAL = "30000",
+SUCCESS_PAYMENT_TIMEOUT_MILLISECONDS = "5000",
+CHANGE_SUM_INFO_TIMEOUT_MILLISECONDS = "30000",
+BILL_VALIDATOR_MAX_SUM_BILL_ENABLED = "1",
+BILL_VALIDATOR_MAX_SUM_BILL_MAX_SUM_MODE = "MaxSum",
+SHOW_DLG_MAX_SUM_EXCEEDED = "1",
+SHOW_DLG_BILL_INVALID = "1",
+DLG_INVALID_BILL_TIMEOUT = "10000",
+DLG_MAX_SUM_EXCEEDED_TIMEOUT = "10000",
+CHANGE_SUM_AUTO_FLUSH_TIMEOUT = "45000",
+CHANGE_SUM_AUTO_FLUSH_PROVIDER_ID = "198806021615",
+CHANGE_SUM_AUTO_FLUSH_ENABLED = "0",
+CHANGE_SUM_PAGE_ENABLED = "1",
+CHANGE_SUM_INFO_PAGE_SHOW_SUCCESS_PAYMENT_BLOCK = "0",
+BILL_VALIDATOR_AUTO_CLOSE_ENABLED = "1",
+OMIT_BARCODE_SCANNER_NOT_OPERABLE = "1",
+SCROLL_STEP_OFFSET = "50",
+CARD_KCV_LENGTH = "6",
+CARD_TERMINAL_ID_LENGTH = "7",
+CABINET_DESK_TOP_GROUP_MENU_FORCE_SHOWN = "0",
+CABINET_DESK_TOP_GROUP_MENU_FORCE_HIDDEN = "1",
+BANK_CABINET_SHOW_ALL_ACCOUNTS_SINGLE_GROUP = "1",
+CABINET_RETURN_TO_DESK_AFTER_PAYMENT = "1",
+LOG_GUID_CHANGE_SUM = "cce7d90a-24ac-49ee-8908-c9ef7fc5d446",
+CLIENTSIDE_LOGGER_LEVEL = "debug;trace;info;warn;error;fatal",
+AUTO_PAYMENT_AFTER_TIMEOUT_ENABLED = "1",
+FORCED_PAYMENT_AFTER_TIMEOUT_ENABLED = "1",
+BILL_VALIDATOR_NOT_OPERABLE_BLOCK_ENABLED = "1",
+PAYMENT_GLOBAL_MAX_SUM_MODE = "RestrictByEntireAmount",
+PAYMENT_GLOBAL_MAX_SUM_ENABLED = "0",
+PAYMENT_GLOBAL_MAX_SUM = "15000",
+CONFIRM_TEXT_PRINTING = "0",
+PIN_PAD_ACTIONS_FOR_DLG_BTNS_ENABLED = "1",
+SAVE_MONEY_TO_CHANGESUM_ON_FAILED_PAYMENT = "0",
+PRINTER_TYPE = "TEXT",
+OPERATOR_TITLE_CARD_RECHARGE = "Пополнение карты",
+CARD_RECHARGE_FIELD_TITLE_CARD_NUMBER = "Номер карты",
+CARD_RECHARGE_FIELD_TITLE_BAL_AMOUNT = "Остаток средств",
+CARD_RECHARGE_PROPER_REQUEST_USED = "0",
+LABEL_BTN_CARD_RECHARGE = "Пополнить мою карту",
+LABEL_BTN_CARD_BALANCE = "Мой баланс";
+</script>
+        <script type="text/javascript">      
+            var _layoutPage = null,
+                URL_MAINMENU = "/TerminalUI/Home/MainMenu.mvc",
+                URL_ERROR = "/TerminalUI/Home/Error.mvc",
+                PATH_ERROR = "/TerminalUI/Home/Error.mvc",
+                urlCabinetSignOut = "/TerminalUI/Cabinet/SignOut.mvc",
+                urlPrinterError = "/TerminalUI/Home/PrinterError.mvc",
+                URL_WRITE_CLIENT_SIDE_LOG = "/TerminalUI/Log/WriteClientSideLog.mvc",
+                URL_WRITE_CLIENT_SIDE_LOG_BATCH = "/TerminalUI/Log/WriteClientSideLogBatch.mvc",
+                URL_CABINET_ADD_OPERATOR = "/TerminalUI/Cabinet/AddOperator.mvc",
+                URL_CABINET_CHECK_SAME_OPERATOR_ACCOUNT = "/TerminalUI/Cabinet/CheckSameOperatorAccount.mvc",
+                cardCaptureTimeout = 120000,
+                pointNumber = 2623,
+                IS_CABINET_SESSION = isCabinetSession = false,
+                billValidatorAmount = 0,
+                URL_CARD_SET_POSITION = "/TerminalUI/Card/SetCardPosition.mvc",
+                SMART_CLIENT_MANAGER_REQUEST_TIMEOUT_MILLISECONDS = 60000;
+ 
+            layoutMisc();
+        </script>       
+        <script type="text/javascript" src="/terminalui/scripts/waitmsgmanager.js?v=20150624100508"></script>
+        
+        <script type="text/javascript" src="/terminalui/scripts/pages/clientsidepage.js?v=20150624095002"></script>
+        <script type="text/javascript" src="/terminalui/scripts/timeoutmanager.js?v=20150624100422"></script>
+        <script type="text/javascript" src="/terminalui/scripts/defaulttimeoutmanager.js?v=20150624100422"></script>
+        <script type="text/javascript" src="/terminalui/scripts/pages/layoutpage.js?v=20150624095002"></script>
+		<script type="text/javascript">
+		    performUltimateBootstrap();
+		</script>
+        <script type="text/javascript">
+            var CurrentSessionKey = TerminalUI.CurrentSessionKey = "20170830221143729496";
+            SmartClientManager.setSessionKey(CurrentSessionKey);
+        </script>
+ 
+        
+ 
+<script type="text/javascript" src="/terminalui/scripts/smartclientmanagerextensions/keyboardpinpadbridge.js?v=20150623151430"></script> 
+        
+        <script type="text/javascript" src="/terminalui/scripts/blocks/billvalidatornotoperableblock.js?v=20150623151430"></script>
+<script type="text/javascript" src="/terminalui/scripts/dlgs/dlgmsg.js?v=20150624100508"></script>
+<script type="text/javascript" src="/terminalui/scripts/dlgs/dlgmsgmanager.js?v=20150624100508"></script>
+	
+    
+<link href="/TerminalUI/Content/CSS/btn_main_menu.css?v=20170830210345" rel="stylesheet" type="text/css" />
+<link href="/TerminalUI/Themes/otp-bank/CSS/Pages/Home/MainMenu.css?v=20131009165100" rel="stylesheet" type="text/css" /><link href="/TerminalUI/Themes/otp-bank/CSS/Pages/Home/MainMenu.ext.css?v=20140624131512" rel="stylesheet" type="text/css" />
+ 
+ 
+ 
+<script type="text/javascript"> 
+    SmartClientManager.writeStateToLog("Выполнен переход на страницу &quot;Главное меню&quot;.");
+</script>
+<script type="text/javascript"> 
+    SmartClientManager.pollCardPositionAsync(function (pos) {
+        if (pos == "Inside") SmartClientManager.ejectCard();
+    });
+</script>
+<script type="text/javascript"> 
+    SmartClientManager.setSessionKey("20170830221143729496");
+</script>
+<script type="text/javascript"> 
+    var ADJUST_MAIN_MENU_BUTTONS_CENTER = true;
+</script>
+<script type="text/javascript"> 
+    var URL_HEARTBEAT = "/TerminalUI/Home/HeartBeat.mvc";
+    var IMMEDIATELY_FLUSH_CHANGE_SUM = false;
+</script>
+<script type="text/javascript" src="/terminalui/scripts/pages/home/mainmenu.js?v=20150624095002"></script>
+<script type="text/javascript"> 
+    var mainMenuPage = ClientSidePage.runNewPage(MainMenuPage, {}, { urlHeartBeat: URL_HEARTBEAT });
+</script>
+    
+    </head>
+    <body>
+        <div id="divWrapper" class="th-wrapper wrapper ">
+        <div id="lock" class="th-lock hidden"></div>
+        <div id="dlgWait" class="th-dlg th-wait hidden">
+    <div class="th-dlg-inner">
+        <div class="th-wait-icon"></div>
+        <div class="th-wait-msg">Пожалуйста, подождите...</div>
+    </div>
+</div>
+ 
+ 
+    
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+<div id="dlgIdleTimeout" class="dlg dlg-msg hidden">
+    <div class="dlg-inner">
+        <div class="dlg-msg">
+            <img alt="" class="dlg-msg-icon" height="128" src="/terminalui/content/img/question.png?v=20131007092400" width="128" />
+            <span class="dlg-msg-text"><br />
+    Продолжить?
+    <br /><!--
+    Ваш сеанс закончен в результате простоя.
+    <br />
+    <br />
+    Хотите продолжить операцию?
+    --></span>
+        </div>
+    </div>    
+    <div class="dlg-buttons">
+        <div class="th-hyperlink btn-nav loggable th-btn-nav th-btn-nav-nav_bg_cancel   btn-nav-cancel" data-btn_type="Cancel" data-use_default_click_handler="1"></div><div class="th-hyperlink btn-nav loggable th-btn-nav th-btn-nav-nav_bg_ok   btn-nav-ok" data-btn_type="OK" data-use_default_click_handler="1"></div>
+    </div>
+</div>
+ 
+<script type="text/javascript"> 
+    
+(function ($) {
+    var dlgMsgClientId = "dlgIdleTimeout";
+ 
+    $(function () {
+        var dlgMsg = new DlgMsg(dlgMsgClientId);
+        DlgMsgManager.registerDlg(dlgMsg);
+        
+        var $dlg = $(".dlg-msg");
+ 
+    });
+})(jQuery)
+ 
+</script>
+ 
+<script type="text/javascript" src="/terminalui/scripts/dlgs/dlgidletimeout.js?v=20150624095002" data-dlg_id="dlgIdleTimeout"></script>
+ 
+ 
+ 
+<script> 
+	$(document).ready(function(){
+		$(".btn").bind('mousedown',function(){
+			$(this).addClass("active");
+		});
+		$(".btn").bind('mouseup click',function(){
+			$(this).removeClass("active");
+			window.location=$(this).attr("href");
+			//return false;
+		});
+	
+	});
+</script>
+ 
+<div id="blockBillValidatorNotOperable" class="bill-validator-not-operable-block hidden">
+Оплата наличными недоступна.
+</div>
+ 
+<div class="btn_info">
+	<div href="/TerminalUI/home/information.mvc" class="btn btn_information"><div class="body"></div></div>
+</div>
+ 
+<table id="pageTable" class="main-menu-page-container" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td class="banner-top-container-cell" style="height: 248px; margin: 0; padding: 0; offset: 0;">
+<div id="bannerTop" class="banner-top-container">
+<img alt="Верхний баннер" class="img-banner-top" height="248" id="bannerTop" src="/terminalui/content/img/banner_top.png?v=20140418101330" width="1280" />
+</div>        </td>
+    </tr>
+    <tr>
+        <td id="mainMenuContainer">
+            <table id="mainMenuContainerTable" class="main-menu-container th-main-menu" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td class="th-mm-item" align="center" valign="middle">
+ 
+ 
+<div class="th-hyperlink mm-item-block th-mm-item-mm_bg_serv" onclick="go('/TerminalUI/Home/MainMenu/26a4cc2c-54f5-4bb2-914c-0593c845f6b9/200.mvc?target=pay_services')"></div>
+ 
+<div class="th-hyperlink mm-item-block th-mm-item-mm_bg_cab" onclick="go('/TerminalUI/Home/MainMenu/3e51c27f-dad1-4850-b930-ff8b915d992c/201.mvc')"></div>                        </td>
+                    </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td id="feedbackStripContainer">
+        </td>
+    </tr>
+</table>
+		        </div>
+        <script type="text/javascript" src="/terminalui/scripts/devices/devicestatelogging.js?v=20150623151430"></script>
+        <script type="text/javascript">
+            $(function(){
+                ChangeSumManager.Instance.updateBannerAsync();
+            });
+        </script>
+                
+    </body>
+</html>

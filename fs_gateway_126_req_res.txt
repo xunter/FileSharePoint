@@ -1,0 +1,17 @@
+126 запрос-ответ:
+
+запрос:
+AP=2623;
+REQ_TYPE=126;
+SESSION=20170830215059452724;
+OP_ID=500380;
+FIELDS=field100=5160093051016007&field101=999
+
+ответ успех:
+RESULT=0
+ERROR=0
+ANSWER_XML=<?xml version="1.0" encoding="Windows-1251"?><root><account provider_id="500385"><fields><field name="Название продукта" id="199" preview="1" value="Кредит" payment="1" cheque="1" details="1" hidden="0"/><field id="100" details="0" payment="1" cheque="1" preview="0" hidden="1" name="Идентификатор счета" value="40817810900167325577-3"/><field id="101" payment="1" cheque="1" preview="0" details="1" hidden="0" name="Номер счета" value="40817810900167325577"/><field id="102" details="0" payment="1" cheque="1" preview="0" hidden="1" name="Тип счета" value="POCR"/><field id="103" preview="1" payment="1" cheque="1" details="1" hidden="0" name="Номер договора" value="2616984630"/><field id="104" payment="1" cheque="1" preview="0" details="1" hidden="0" name="Дата открытия договора" value="14.11.2013"/><field id="105" payment="1" cheque="1" preview="0" details="1" hidden="0" name="Сумма просроченной задолженности" value="0"/><field id="106" payment="1" cheque="1" preview="0" details="1" hidden="0" name="Штраф по просроченной задолженности" value="0"/><field id="107" payment="1" cheque="1" preview="0" details="1" hidden="0" name="Сумма очередного платежа с учетом задолженности " value="2564.66"/><field id="108" payment="1" cheque="1" preview="0" details="1" hidden="0" name="Оплатить до" value="14.11.2014"/></fields><operations><group><name>Доступные операции:</name><operation name="Пополнение наличными" task="simplePayment"/></group></operations></account><account provider_id="500386"><fields><field name="Название продукта" id="199" preview="1" value="Карта" payment="1" cheque="1" details="1" hidden="0"/><field id="100" details="0" payment="1" cheque="1" preview="0" hidden="1" name="Идентификатор счета" value="40817810300056473761-3"/><field id="101" payment="1" cheque="1" preview="0" details="1" hidden="0" name="Номер счета" value="40817810300056473761"/><field id="102" details="0" payment="1" cheque="1" preview="0" hidden="1" name="Тип счета" value="CACR"/><field id="103" preview="1" payment="1" cheque="1" details="1" hidden="0" name="Номер карты" value="5268393571551386"/><field id="104" payment="1" cheque="1" preview="0" details="1" hidden="0" name="Минимальный платеж" value="0"/><field id="105" payment="1" cheque="1" preview="0" details="1" hidden="0" name="Сумма просроченной задолженности" value="0"/><field id="106" payment="1" cheque="1" preview="0" details="1" hidden="0" name="Оплатить до" value="28.03.2014"/></fields><operations><group><name>Доступные операции:</name><operation name="Пополнение наличными" task="simplePayment"/></group></operations></account></root>
+
+ответ ошибка (сейчас):
+RESULT=1
+ERROR=1002 (ошибка в БД ORA-....)

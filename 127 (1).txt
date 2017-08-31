@@ -1,0 +1,9 @@
+AP=2623;
+REQ_TYPE=127;
+SESSION=20170830215059452724;
+OP_ID=500380;
+FIELDS=field100=transaction_id&field101=offer_id&field102=compaing_id&field103=client_uid&field104=response
+
+ответ успех:
+RESULT=0
+ERROR=0

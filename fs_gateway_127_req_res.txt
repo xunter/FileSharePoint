@@ -1,0 +1,21 @@
+126 запрос-ответ:
+
+запрос:
+AP=2623;
+REQ_TYPE=127;
+SESSION=20170830215059452724;
+? OP_ID=500380;
+? FIELDS=field100=5160093051016007&field101=999
+
+?
+transactionId, offerId (из XML), isInteresting («1» если интересно)
+?
+Какие это поля???? Fields???
+
+ответ успех:
+RESULT=0
+ERROR=0
+
+ответ ошибка:
+RESULT=1
+ERROR=1002 (ошибка в БД ORA-....)
