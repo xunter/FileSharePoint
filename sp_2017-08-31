@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=8" />
+		<meta http-equiv="Page-Enter" content="blendTrans(duration=.01)" />
+		<meta http-equiv="Page-Exit" content="blendTrans(duration=.01)" />
+ 
+	    <title>Terminal Application</title>
+ 
+<style type="text/css">
+
+body {
+background-color: black !important;
+}
+</style>
+ 
+        <link href="./TerminalUI/Themes/otp-bank/CSS/core.css?v=20150218160622" rel="stylesheet" type="text/css" /><link href="./TerminalUI/Themes/otp-bank/CSS/core.ext.css?v=20141126100630" rel="stylesheet" type="text/css" />
+        <link href="./TerminalUI/Themes/otp-bank/CSS/btn_nav.css?v=20130624165100" rel="stylesheet" type="text/css" />
+        <link href="./TerminalUI/Themes/otp-bank/CSS/btn_move_shadowless.css?v=20130405134200" rel="stylesheet" type="text/css" />
+        <link href="./TerminalUI/Content/CSS/Scrollbar.css?v=20150226101124" rel="stylesheet" type="text/css" />
+            
+        
+        <link href="./TerminalUI/Content/CSS/PinPad.css?v=20150226101126" rel="stylesheet" type="text/css" />
+<link href="./TerminalUI/Content/CSS/Dialogs/DlgPromptPasswordRemind.css?v=20150226101122" rel="stylesheet" type="text/css" />
+<link href="./TerminalUI/Themes/otp-bank/CSS/Field.css?v=20150219121728" rel="stylesheet" type="text/css" />
+ 
+ 
+        <script type="text/javascript" src="./TerminalUI/scripts/underscore-1.4.4.js?v=20150616171030"></script>
+	    <script type="text/javascript" src="./TerminalUI/scripts/utils/cookie.js?v=20150624100508"></script>
+	    <script type="text/javascript" src="./TerminalUI/scripts/settings.js?v=20150623151430"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/common.js?v=20150623151430"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/jquery-1.9.0.min.js?v=20150624100508"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/jquery.scrollto.js?v=20150624100508"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/events.js?v=20150624100422"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/dateup.js?v=20150624100508"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/listener.js?v=20150624100508"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/listenable.js?v=20150623151430"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/storagemanager.js?v=20150624100508"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/fieldsutil.js?v=20150624100508"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/smartclientcommunicator.js?v=20150624095002"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/smartclientmanager.js?v=20150624095002"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/cabinetmanager.js?v=20150624100508"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/cardmanager.js?v=20150624100508"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/navmanager.js?v=20150623151430"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/bootstrapper.js?v=20150623151430"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/utils/ajaxutil.js?v=20150624100508"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/services/ajaxservice.js?v=20150624100508"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/changesummanager.js?v=20150624100422"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/pages/layoutmisc.js?v=20150624095002"></script>
+ 
+        <script type="text/javascript">
+            var TerminalUISettings = TerminalUI.Settings = {"urlPushChangeSum":"./TerminalUI/ChangeSum/PushChangeSum.mvc","urlFetchChangeSum":"./TerminalUI/ChangeSum/FetchChangeSum.mvc","urlGetChangeSumBanner":"./TerminalUI/ChangeSum/ChangeSumBanner.mvc","dateShortPattern":"dd.MM.yyyy","dateLongPattern":"dd.MM.yyyy HH:mm:ss","numberDecimalSeparator":",","numberGroupSeparator":" ","GatewayErrorGeneralMessage":"При выполнении запроса произошла ошибка!"};         
+            var terminalUIConfig = TerminalUI.Config = {"General":{"InformationPagesPath":"C:\\Terminal\\Config\\info_ru.xml","OperatorsPath":"C:\\Terminal\\Config\\operators.xml","ServiceMenuPasswordHash":"","VersionFileVirtualPath":"~/version.txt","ImagesPath":"","Title":"Terminal Application","CurrencyPostfix":"руб.","XmlFileBasedStorageFileName":"C:\\Terminal\\Data\\PersistentStorage.xml","ChangeSumFile":"C:\\Terminal\\Data\\ChangeSum.xml","AutoDetectedMobileOperatorID":999,"MobileOperatorsPhonesRangeToDetectPath":"C:\\Terminal\\Config\\capa_num.xml","DealerInfoPath":"C:\\Terminal\\Config\\dealerInfo.xml","PointProfilePath":"C:\\Terminal\\Config\\PointProfile.xml","SessionNumLength":20,"AsyncOperationTimeout":40,"Theme":"Default","UIMessagesFilePath":"~/App_Data/UIMessages.xml","UISettingsPath":"~/App_Data/UISettings.xml","RegisterUISettingsAsJavaScriptConstants":true,"ChequeNumFilepath":"C:\\Terminal\\Data\\cheque_num.dat"},"NavigationButtons":{"FilePath":"~/App_Data/NavigationButtons.xml"},"Card":{"CaptureTimeout":120000,"CardInfosFilePath":"C:\\Terminal\\Config\\CardInfos.xml","OperatorsXmlCardTarget":"card_pay_services","BalanceOperatorName":"CARD_BALANCE","CheckCardExpirationDateEnabled":true,"EmulateBalance":false,"HandleAcceptPinPadButtonOnEnterPin":true,"ReinitPinPadOnAcceptButtonClick":true,"AuthorizationResponseCodesFilePath":"~/App_Data/card_auth_response_codes.xml","BalanceAmountFieldName":"BAL_AMOUNT","ResponseCodeFieldName":"RESPONSE_CODE"},"Devices":{"DeviceStateHandling":{"HandlePrinterState":false,"HandleBillValidatorState":true,"HandleWMCopyData":false},"BillValidator":{"ShowVirtualBar":true},"Printer":{"AlertPrinterText":false},"DeviceSetXmlFilePath":"C:\\Terminal\\Config\\device-set.xml"},"ChequeTemplates":{"FieldDisplayNameLength":0,"DirPath":"C:\\Terminal\\Config\\ChequeTemplates","PaymentErrorTemplateName":"payment-error.chq","CardPaymentErrorTemplateName":"card-payment-error.chq","CardPaymentStatusTemplate":"card-payment-status.chq","DefaultTemplateName":"default.chq"},"ImageMaps":{"RequiredImageMaps":{}},"HttpHandlers":{"ThemeResourceHandler":{"CacheableExtensions":".css,.js","CacheDuration":{"Ticks":315360000000000,"Days":365,"Hours":0,"Milliseconds":0,"Minutes":0,"Seconds":0,"TotalDays":365,"TotalHours":8760,"TotalMilliseconds":31536000000,"TotalMinutes":525600,"TotalSeconds":31536000},"AppendLastModifiedHeaderWhenCache":false,"ContentTypeByExtensionMappings":{}}},"HttpModules":{"ImageRevalidationModule":{"ImageExtensions":".png,.gif,.bmp,.jpg,.jpeg"},"ClientSideCachingModule":{"CacheableMimeTypes":""}},"SmartClientManager":{"RequestTimeout":{"Enabled":true,"Timeout":{"Ticks":600000000,"Days":0,"Hours":0,"Milliseconds":0,"Minutes":1,"Seconds":0,"TotalDays":0.00069444444444444436,"TotalHours":0.016666666666666666,"TotalMilliseconds":60000,"TotalMinutes":1,"TotalSeconds":60}}},"Payment":{},"TransportCardSuitableRoute":{"EmulationMode":false,"PayByCardEnabled":false},"Cabinet":{"PaymentChoiceIfCardTargetAvailableEnabled":false,"TargetOTP":"cabinet_otp"},"ActionFilters":{"ClientSideCache":{"CacheProfile":"","Enabled":false}},"Operators":{"TelecomGroupTarget":"","TelecomGroupTitle":"ТЕЛЕФОНИЯ"},"ChangeSum":{}};   
+            var SumLimitModes = TerminalUI.SumLimitModes = {"RestrictByPayAmount":0,"RestrictByEntireAmount":1};
+            var UISettingsMap = TerminalUI.UISettingsMap = {"AMOUNT_DIFF_REQUEST_ENABLED":"1","REQUIRED_FIELD_POSITION":"2","FORCE_SHOW_DLG_BARCODE":"1","DLG_BARCODE_TITLE":"Штрих код","DLG_BARCODE_DESCRIPTION":"Считайте штрих-код с помощью сканера или введите на клавиатуре","BTN_PUT_CASH_CHANGE_TITLE":"Внимание! Если у Вас денег меньше, чем сумма к внесению, Вы можете, нажав эту кнопку, выбрать другую услугу для оплаты.","TIMEOUT_ULTIMATE_MILLISECONDS":"600000","TIMEOUT_ULTIMATE_ENABLED":"1","INTERVAL_DEVICE_STATE_POLLING_MILLISECONDS":"60000","ENABLE_TRIPLE_SCREEN_TIMEOUT_ERROR":"0","TRIPLE_SCREEN_PANEL_TIMEOUT_TARGET_PAGE":"MainMenu","MAX_COUNT_SCREEN_PANEL_IDLE_TIMEOUT":"1","SHOW_FEEDBACK_STRIP_MAIN_MENU":"0","SHOW_FEEDBACK_STRIP_PAY_SERVICES":"0","SHOW_FEEDBACK_STRIP_GROUP_MENU":"0","SHOW_BANNER_TOP_MAIN_MENU":"1","SHOW_BANNER_TOP_PAY_SERVICES":"1","SHOW_BANNER_TOP_GROUP_MENU":"1","ADJUST_MAIN_MENU_BUTTONS_CENTER":"1","SHOW_WAIT_DLG_WHEN_CHECKING_OPERATOR_RECEIPT_REQUIREMENT":"0","NAVIGATING_SHOW_WAIT_DLG_ENABLED":"1","NAVIGATING_SHOW_SHADOW_ENABLED":"1","NAVIGATING_SHOW_SMTH_DELAY_MILLISECONDS":"1","DLG_IDLE_TIMEOUT_ENABLED":"1","DLG_IDLE_TIMEOUT_DENIED_PATHS":"/Home/MainMenu;/Home/Error;/Home/PrinterError;/Home/Unavailable;/Home/SuccessPayment","DLG_IDLE_TIMEOUT_CLIENT_ID":"dlgIdleTimeout","DLG_IDLE_TIMEOUT_TIMEOUT_MILLISECONDS":"15000","DLG_IDLE_TIMEOUT_SHOW_QUESTION_ICON":"1","Cabinet_BankServices_AccountItem_ShowDeskTypeName":"0","Cabinet_BankServices_AccountItem_Horizontal":"1","UIMessages_type_separator":";","DLG_MSG_AUTO_HEIGHT_ENABLED":"0","PAGE_GROUP_MENU_PAGING_MODE":"ServerSide","PAGE_GROUP_MENU_SERVERSIDE_PAGE_SIZE":"12","PAGING_MAX_PAGE_BTNS_SIZE":"3","MAIN_MENU_HEARTBEAT_ENABLED":"1","MAIN_MENU_HEARTBEAT_INTERVAL":"30000","SUCCESS_PAYMENT_TIMEOUT_MILLISECONDS":"5000","CHANGE_SUM_INFO_TIMEOUT_MILLISECONDS":"30000","BILL_VALIDATOR_MAX_SUM_BILL_ENABLED":"1","BILL_VALIDATOR_MAX_SUM_BILL_MAX_SUM_MODE":"MaxSum","SHOW_DLG_MAX_SUM_EXCEEDED":"1","SHOW_DLG_BILL_INVALID":"1","DLG_INVALID_BILL_TIMEOUT":"10000","DLG_MAX_SUM_EXCEEDED_TIMEOUT":"10000","CHANGE_SUM_AUTO_FLUSH_TIMEOUT":"45000","CHANGE_SUM_AUTO_FLUSH_PROVIDER_ID":"198806021615","CHANGE_SUM_AUTO_FLUSH_ENABLED":"0","CHANGE_SUM_PAGE_ENABLED":"1","CHANGE_SUM_INFO_PAGE_SHOW_SUCCESS_PAYMENT_BLOCK":"0","BILL_VALIDATOR_AUTO_CLOSE_ENABLED":"1","OMIT_BARCODE_SCANNER_NOT_OPERABLE":"1","SCROLL_STEP_OFFSET":"50","CARD_KCV_LENGTH":"6","CARD_TERMINAL_ID_LENGTH":"7","CABINET_DESK_TOP_GROUP_MENU_FORCE_SHOWN":"0","CABINET_DESK_TOP_GROUP_MENU_FORCE_HIDDEN":"1","BANK_CABINET_SHOW_ALL_ACCOUNTS_SINGLE_GROUP":"1","CABINET_RETURN_TO_DESK_AFTER_PAYMENT":"1","LOG_GUID_CHANGE_SUM":"cce7d90a-24ac-49ee-8908-c9ef7fc5d446","CLIENTSIDE_LOGGER_LEVEL":"debug;trace;info;warn;error;fatal","AUTO_PAYMENT_AFTER_TIMEOUT_ENABLED":"1","FORCED_PAYMENT_AFTER_TIMEOUT_ENABLED":"1","BILL_VALIDATOR_NOT_OPERABLE_BLOCK_ENABLED":"1","PAYMENT_GLOBAL_MAX_SUM_MODE":"RestrictByEntireAmount","PAYMENT_GLOBAL_MAX_SUM_ENABLED":"0","PAYMENT_GLOBAL_MAX_SUM":"15000","CONFIRM_TEXT_PRINTING":"0","PIN_PAD_ACTIONS_FOR_DLG_BTNS_ENABLED":"1","SAVE_MONEY_TO_CHANGESUM_ON_FAILED_PAYMENT":"0","PRINTER_TYPE":"TEXT","OPERATOR_TITLE_CARD_RECHARGE":"Пополнение карты","CARD_RECHARGE_FIELD_TITLE_CARD_NUMBER":"Номер карты","CARD_RECHARGE_FIELD_TITLE_BAL_AMOUNT":"Остаток средств","CARD_RECHARGE_PROPER_REQUEST_USED":"0","LABEL_BTN_CARD_RECHARGE":"Пополнить мою карту","LABEL_BTN_CARD_BALANCE":"Мой баланс"};
+            var UIMessageMap = TerminalUI.UIMessageMap = {"GENERAL_WAITING_MSG":"Пожалуйста, подождите...","GeneralError":"Операция не выполнена. Приносим свои извинения за доставленные неудобства.","OperatorsXmlFileNotFound":"Конфигурация не загружена.","RequiredImageMapsNotFound":"Изображения не загружены.","DeviceSetNotConfigured":"Устройства не настроены.","GatewayErrorGeneral":"При выполнении запроса произошла ошибка!","MaxSumExceeded":"Введенная сумма превышает допустимый лимит!","MaxSumExceededEntire":"Введенная сумма превышает допустимый лимит с учетом комиссии!","MinSumNotReached":"Введенная сумма менее минимально допустимой!","ReceiveCashSumInfoFriendly":"Внесите необходимую сумму по одной купюре в купюроприемник","CardOperationFailedGeneralMsgTemplate":"Операция не выполнена! {0}","CABINET_SendCabinetPasswordRequest_CommonError":"Ошибка сервера!","CABINET_LoadCabinetRequest_CommonError":"Не удалось проверить введенные данные!","CABINET_LoadCabinetRequest_InvalidFields_RemindPasswordViaSMS":"Неправильный пароль. Отправить пароль по смс?","DLG_IDLE_TIMEOUT_MSG":"\u003cbr /\u003e\r\n    Продолжить?\r\n    \u003cbr /\u003e\u003c!--\r\n    Ваш сеанс закончен в результате простоя.\r\n    \u003cbr /\u003e\r\n    \u003cbr /\u003e\r\n    Хотите продолжить операцию?\r\n    --\u003e","Gateway_ErrorCode_3":"Терминал не найден на сервере. Обратитесь в службу поддержки.","Gateway_ErrorCode_TerminalWasNotFoundOnTheServer":"Терминал не найден на сервере. Обратитесь в службу поддержки.","Gateway_ErrorCode_6":"Ошибка электронной подписи. Обратитесь в службу поддержки.","Gateway_ErrorCode_SignError":"Ошибка электронной подписи. Обратитесь в службу поддержки.","Gateway_ErrorCode_10":"Неверный формат сообщения. Обратитесь в службу поддержки.","Gateway_ErrorCode_InvalidMessageFormat":"Неверный формат сообщения. Обратитесь в службу поддержки.","Gateway_ErrorCode_15":"Неверный номер провайдера. Обратитесь в службу поддержки.","Gateway_ErrorCode_InvalidOperatorNumber":"Неверный номер провайдера. Обратитесь в службу поддержки.","Gateway_ErrorCode_23":"Неверные значения полей в данных платежа. Проверьте данные платежа.","Gateway_ErrorCode_InvalidFields":"Неверные значения полей в данных платежа. Проверьте данные платежа.","Gateway_ErrorCode_24":"Ошибка обмена данными с получателем платежа.","Gateway_ErrorCode_OperatorConnectionError":"Ошибка обмена данными с получателем платежа.","Gateway_ErrorCode_30":"Ошибка сервера. Обратитесь в службу поддержки.","Gateway_ErrorCode_ServerError":"Ошибка сервера. Обратитесь в службу поддержки.","Gateway_ErrorCode_134":"Отсутствует открытый ключ терминала. Обратитесь в службу поддержки.","Gateway_ErrorCode_TerminalPublicKeyIsMissing":"Отсутствует открытый ключ терминала. Обратитесь в службу поддержки.","Gateway_ErrorCode_1001":"Неизвестный тип запроса. Обратитесь в службу поддержки.","Gateway_ErrorCode_UnrecognizedRequestType":"Неизвестный тип запроса. Обратитесь в службу поддержки.","Gateway_ErrorCode_1002":"Ошибка в базе данных. Обратитесь в службу поддержки.","Gateway_ErrorCode_DBError":"Ошибка в базе данных. Обратитесь в службу поддержки.","Gateway_ErrorCode_1003":"Не найден счет/договор/карта.","Gateway_ErrorCode_UserWasNotFound":"Не найден счет/договор/карта.","Gateway_ErrorCode_1004":"Неверный телекод.","Gateway_ErrorCode_UserPasswordInvalid":"Неверный телекод.","Gateway_ErrorCode_1005":"Доступ по телекоду заблокирован. Обратитесь в службу поддержки.","Gateway_ErrorCode_UserIsBlocked":"Доступ по телекоду заблокирован. Обратитесь в службу поддержки.","Gateway_ErrorCode_1006":"Получатель платежа заблокирован. Обратитесь в службу поддержки.","Gateway_ErrorCode_OperatorIsBlockedForTheCurrentSubdealer":"Получатель платежа заблокирован. Обратитесь в службу поддержки.","Gateway_ErrorCode_1007":"Не установлен профиль для терминала. Обратитесь в службу поддержки.","Gateway_ErrorCode_TerminalProfileIsMissing":"Не установлен профиль для терминала. Обратитесь в службу поддержки.","Gateway_ErrorCode_1008":"Неизвестный запрос к шлюзу провайдера.","Gateway_ErrorCode_UnrecognizedRequestToOperatorGateway":"Неизвестный запрос к шлюзу провайдера.","Gateway_ErrorCode_1009":"Извините, счёт закрыт.","Gateway_ErrorCode_UserAccountIsClosed":"Извините, счёт закрыт.","Gateway_ErrorCode_1010":"Доступ по телекоду отключен. Обратитесь в службу поддержки.","Gateway_ErrorCode_InvalidOperation":"Доступ по телекоду отключен. Обратитесь в службу поддержки.","PAGE_INFORMATION_NAME":"Информация","PAGE_GROUP_MENU_NAME":"Список услуг группы {0}","PAGE_CABINET_SIGN_IN_PASSWORD":"Вход в Личный кабинет (ввод пароля)","LABEL_CONTACTS_STRIP_POINT_CODE":"Терминал","LABEL_CONTACTS_STRIP_AGENT_PHONE":"Телефон агента","LABEL_CONTACTS_STRIP_POINT_ADDRESS":"Адрес","DLG_TRANSPORT_CARD_SUITABLE_ROUTE_PAY_BY_CARD_DENIED":"Пополнение транспортной карты возможно только наличными денежными средствами","POINT_NUM_LABEL":"Терминал","POINT_ADDRESS_LABEL":"Адрес","LABEL_CARD_NUMBER":"Номер карты","LABEL_CARD_TERMINAL_ID":"Номер J терминала","LABEL_CARD_AUTH_CODE":"Код авторизации","TELECOM_OPERATOR_DETECTION_FAILED":"Не удалось определить оператора по введенным полям!","DLG_MOBILE_OPERATOR_DETECTION_FAILED_NAVIGATE_TELECOM_GROUP_PROMPT":"Не удалось определить оператора по введенным полям!\u003cbr /\u003e\u003cbr /\u003e\r\n    Перейти в группу ТЕЛЕФОНИЯ для ручного выбора?","SUCCESS_PAYMENT":"Операция выполнена успешно","SUCCESS_PAYMENT_GOOD_LUCK":"Желаем удачи!","CHANGE_SUM_ALERT":"Внимание! У Вас осталась сдача в размере \u003cstrong\u003e#CHANGE_SUM_VALUE# #CURRENCY_POSTFIX#\u003c/strong\u003e\u003cbr /\u003e\r\n        Выберите провайдера для зачисления на него вашей сдачи.","CHANGE_SUM_INFO_PAGE_ALERT":"Внимание! У Вас осталась сдача \u003cstrong\u003e#CHANGE_SUM_VALUE# #CURRENCY_POSTFIX#\u003c/strong\u003e\u003cbr /\u003e\r\n    Оплатите сдачей другую услугу.","REQUIRED_FIELD_MARK":"","REQUIRED_FIELDS_DESCRIPTION":"обязательные для заполнения поля","MAX_SUM_EXCEEDED_ALERT":"Превышен максимальный лимит суммы платежа!","INVALID_BILL":"Купюра не распознана!","CARD_READER_NOT_OPERABLE":"Кард-ридер не исправен!","ERROR_NAVIGATING_PRE":"Переход на страницу Ошибка по причине","ERROR_NAVIGATING_CARD_READER_NOT_OPERABLE":"Переход на страницу Ошибка по причине неисправности кард-ридера","ERROR_NAVIGATING_CARD_AUTHENTICATE_PINPAD_PARAM_NULL":"Переход на страницу Ошибка по причине получения одного из ключевых параметров от ПинПада #PARAM_NAME# со значением NULL","ERROR_NAVIGATING_CARD_INVALID_KCV":"Переход на страницу Ошибка по причине некорректного KCV #PARAM_VALUE#","ERROR_NAVIGATING_CARD_INVALID_TERMINAL_ID":"Переход на страницу Ошибка по причине некорректного TERMINAL_ID #PARAM_VALUE#","ERROR_NAVIGATING_MISSING_DEVICE_TYPES":"Переход на страницу Ошибка по причине отсутствующего необходимого оборудования #MISSING_DEVICE_TYPES#","ERROR_NAVIGATING_TRIPLE_TIMEOUT":"Переход на страницу Ошибка по причине превышения максимального числа (MAX_COUNT_SCREEN_PANEL_IDLE_TIMEOUT) сработанных таймаутов работы с терминалом","ERROR_NAVIGATING_REQUEST_TIMEOUT":"Переход на страницу Ошибка по причине таймаута на ожидание завершения асинхронного запроса #TARGET_ASYNC_METHOD#","ERROR_NAVIGATING_BILLVALIDATOR_NOT_OPERABLE":"Переход на страницу Ошибка по причине неработающего купюроприемника","ERROR_NAVIGATING_PRINTER_NOT_OPERABLE":"Переход на страницу Ошибка по причине неработающего принтера","ERROR_NAVIGATING_WMCOPYDATA_NOT_OPERABLE":"Переход на страницу Ошибка по причине неработающего протокола WM_COPY_DATA","ERROR_NAVIGATING_PINPAD_NOT_OPERABLE":"Переход на страницу Ошибка по причине неисправности устройства ПинПад или его модулей","ERROR_NAVIGATING_FAILED_PAYMENT":"Переход на страницу Ошибка по причине неуспешной регистрации платежа на терминале","ERROR_NAVIGATING_FAILED_BALANCE_GET":"Переход на страницу Ошибка по причине неуспешного получения значения баланса на пластиковой банковской карте","LOG_MSG_CHANGE_SUM_PROVIDER_MISSING":"Провайдер #CHANGE_SUM_AUTO_FLUSH_PROVIDER_ID# для авто-записи сдачи на сервер отсутствует в конфигурации! Сдача равна #CHANGE_SUM# #LOG_GUID#","LOG_MSG_BTN_PUT_CASH_CHANGE_CLICK":"Нажата кнопка \"Перевести средства на сдачу и выбрать другую услугу\"","LOG_MSG_START_PAGE_NAVIGATING_PRE":"Переход на стартовую страницу по причине","NAVIGATE_START_DUE_TO_CANCEL_PAYMENT":"Переход на стартовую страницу по причине выбора другой услуги для оплаты с сохранением внесенной суммы на сдаче","LOG_MSG_START_PAGE_NAVIGATING_SCREEN_PANEL_CALLBACK":"Переход на стартовую страницу по причине срабатывания таймаута простоя терминала","LOG_MSG_START_PAGE_NAVIGATING_BTN_DLG_BILL_VALIDATOR_NOT_OPERABLE_OK_CLICK":"Переход на стартовую страницу по причине нажатия на кнопку ОК диалога о предупреждении о неработающем купюроприемнике","LOG_MSG_START_PAGE_NAVIGATING_PINPAD_CANCEL_PRESSED":"Переход на стартовую страницу по причине нажатия на кнопку Отмена на Пин-Пад","LOG_MSG_START_PAGE_NAVIGATING_TRANSPORT_CARD_SUIT_ROUTE_NAVIGATE_AWAY_INVOKED":"Переход на стартовую страницу по причине срабатывания метода navigateAway","LOG_MSG_START_PAGE_NAVIGATING_ULTIMATE_TIMEOUT":"срабатывания конечного таймаута","ULTIMATE_TIMEOUT_TRIGGERRED":"Произошел конечный таймаут работы теримнала","LOG_MSG_SUCCESS_PAYMENT_NAVIGATING":"Переход на страницу Успешный платеж","LOG_MSG_SHOW_DLG_IDLE_TIMEOUT":"Отображение диалога о простое работы с терминалом","LOG_MSG_HIDE_DLG_IDLE_TIMEOUT":"Скрытие диалога о простое работы с терминалом","AUTO_PAYMENT_AFTER_TIMEOUT_ENABLED_INFO":"Автоплатеж при таймауте ВКЛЮЧЕН","AUTO_PAYMENT_AFTER_TIMEOUT_PROCESSING":"Выполняется автоплатеж при таймауте...","AUTO_PAYMENT_AFTER_TIMEOUT_PROCESSED":"Автоплатеж при таймауте выполнен","AUTO_PAYMENT_AFTER_TIMEOUT_UNABLE_DUE_TO_AMOUNT":"Автоплатеж при таймауте невозможен по причине недостаточной суммы для выполнения платежа","BILL_VALIDATOR_NOT_OPERABLE_BLOCK_MSG":"Оплата наличными недоступна.","LOG_MSG_BILL_VALIDATOR_NOT_OPERABLE_BLOCK_SHOWING":"Отображение блока-сообщения о невозможности принятия купюр по причине не действующего купюроприемника","CONFIRM_TEXT_PRINTING":"Распечатать чек на принтере?","LOG_STATE_NAVIGATE_START_DUE_BTN_PUT_CHANGE_SUM_CLICK":"Переход на стартовую страницу по причине нажатия на кнопку сброса доступных и внесенных денежных средств на сдачу...","LOG_STATE_NAVIGATE_START_CASH_RECEIVE_COMMON":"Переход на стартовую страницу по причине со страницы оплаты услуги наличными средствами путем внесения купюр в купюроприемник...","LOG_STATE_NAVIGATE_START_DUE_BILL_VALIDATOR_NOT_OPERABLE_OK_CLICK_CHANGE_SUM_EMPTY":"Переход на стартовую страницу по причине нажатия на кнопку ОК диалога с сообщением о неработающем купюроприемнике и отсутствием средств для оплаты...","LOG_STATE_NAVIGATE_START_DUE_BILL_VALIDATOR_NOT_OPERABLE_OK_CLICK_CHANGE_SUM_LESS_REQUIRED_SUM":"Переход на стартовую страницу по причине нажатия на кнопку ОК диалога с сообщением о неработающем купюроприемнике с наличием сдачи, но меньшей чем необходимо для платежа...","LOG_BTN_CARD_BALANCE_CLICK":"Нажата кнопка получения баланса по банковской карте","LOG_CARD_BALANCE_REQUEST_OBTAINING":"Запрос на получение баланса по банковской карте #CARD_NUMBER#...","LOG_CARD_BALANCE_REQUEST_SUCCESS":"Выполнен запрос на получение баланса (#BALANCE_VAL#) по банковской карте #CARD_NUMBER#","LOG_CARD_BALANCE_REQUEST_FAILED":"Не удалось выполнить запрос на получение баланса по банковской карте #CARD_NUMBER#. Ошибка: #ERROR_MSG#","LOG_BTN_CARD_RECHARGE_CLICK":"Нажата кнопка пополнения банковской карты"};
+            var VERSION = TerminalUI.Version = "CEF.15.06.24";
+        </script>
+        <script type="text/javascript">
+            FS.GatewayErrorCodes = FS.GatewayErrorCodes = FS.Gateway.ErrorCodes = TerminalUI.GatewayErrorCodes = {"TerminalWasNotFoundOnTheServer":3,"SignError":6,"InvalidMessageFormat":10,"InvalidOperatorNumber":15,"InvalidFields":23,"OperatorConnectionError":24,"ServerError":30,"TerminalPublicKeyIsMissing":134,"UnrecognizedRequestType":1001,"DBError":1002,"UserWasNotFound":1003,"UserPasswordInvalid":1004,"UserIsBlocked":1005,"OperatorIsBlockedForTheCurrentSubdealer":1006,"TerminalProfileIsMissing":1007,"UnrecognizedRequestToOperatorGateway":1008,"UserAccountIsClosed":1009,"InvalidOperation":1010};
+            FS.GatewayResultCodes = FS.Gateway.ResultCodes = FS.GatewayResultCodes = {"Success":0,"Error":1};
+            FS.GatewayRequestTypes = FS.GatewayRequestTypes = FS.Gateway.RequestTypes = {"CheckRequisitiesRequest":1,"RegisterPaymentRequest":3,"LoadInfoRequest":5,"CheckPayRequest":13,"AddCabinetAccountRequest":20,"RemoveCabinetAccountRequest":21,"RemoveProviderAccountsRequest":22,"LoadCabinetHistoryRequest":24,"LoadCabinetRequest":26,"SendCabinetPasswordRequest":40,"LoadOTPCabinetRequest":126,"GetCardBalanceRequest":710,"PayCardRequest":720,"RechargeCardRequest":730,"PointHeartbeatRequest":1060};
+        </script>
+        <script type="text/javascript" src="./TerminalUI/scripts/utils/dlgmanager.js?v=20150623151430"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/operatorfieldsformmanager.js?v=20150624100508"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/services/loggingservice.js?v=20150624100508"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/devices/devicemanager.js?v=20150623151430"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/devices/devicetypemissingchecker.js?v=20150623151430"></script>
+        <script type="text/javascript">
+            var _currentDeviceSet = TerminalUI.CurrentDeviceSet = [{"TypeDisplayName":"Купюроприемник","TypeName":"BillValidator","Name":"BillValidator.CashCode.CCNET","ServiceName":"BillValidatorService","ServiceExeFileName":"C:\\Terminal\\Services\\BillValidatorService\\BillValidatorCCNET\\BillValidatorCCNETService.exe","ServiceExeArguments":"","AutoConfigurable":true,"PortInfo":{"PortName":"COM1","BaudRate":9600,"Parity":"None","DataBits":8,"StopBitsForSerializer":"One","StopBits":1}},{"TypeDisplayName":"Кард-Ридер","TypeName":"CardReader","Name":"CardReader.Sankyo.ICT3K5","ServiceName":"CardReaderService","ServiceExeFileName":"C:\\Terminal\\Services\\CardReaderService\\CardReaderSankyoICT3K5\\CardReaderService.exe","ServiceExeArguments":"","AutoConfigurable":true,"PortInfo":{"PortName":"COM5","BaudRate":9600,"Parity":"Even","DataBits":8,"StopBitsForSerializer":"One","StopBits":1}},{"TypeDisplayName":"ПинПад","TypeName":"PinPad","Name":"PinPad.ZT.588CA","ServiceName":"PinPadService","ServiceExeFileName":"C:\\Terminal\\Services\\PinPadService\\PinPadZT588CA\\PinPadService.exe","ServiceExeArguments":"","AutoConfigurable":true,"PortInfo":{"PortName":"COM3","BaudRate":19200,"Parity":"None","DataBits":8,"StopBitsForSerializer":"One","StopBits":1}},{"TypeDisplayName":"Принтер","TypeName":"Printer","Name":"Printer.Custom.VKP80","ServiceName":"PrinterService","ServiceExeFileName":"C:\\Terminal\\Services\\PrinterService\\PrinterCustomVKP80\\PrinterCustomVKP80Service.exe","ServiceExeArguments":"","AutoConfigurable":true,"PortInfo":{"PortName":"COM4","BaudRate":115200,"Parity":"None","DataBits":8,"StopBitsForSerializer":"One","StopBits":1}},{"TypeDisplayName":"Сканер Штрих-Кодов","TypeName":"BarcodeScanner","Name":"Scanner","ServiceName":"BarcodeScannerService","ServiceExeFileName":"C:\\Terminal\\Services\\BarcodeScannerService\\BarcodeScanner\\BarcodeScannerService.exe","ServiceExeArguments":"","AutoConfigurable":false,"PortInfo":{"ReadTimeout":0,"DelayResponse":100,"DiscardZeroBytes":true,"PortName":"COM9","BaudRate":9600,"Parity":"None","DataBits":8,"StopBitsForSerializer":"One","StopBits":1}}];
+            initDeviceSet(_currentDeviceSet);
+        </script>
+ 
+        <script type="text/javascript"> 
+var NUMBER_DECIMAL_SEPARATOR = ",",
+NUMBER_GROUP_SEPARATOR = " ",
+IS_FIRST_APP_RUN = false,
+URL_COMPUTE_OPERATOR_COMISSION = "./TerminalUI/Operator/ComputeComissionJson.mvc",
+URL_PARSE_INVOICE_TEMPLATE = "./TerminalUI/Home/GetFieldsMapByAnswerData/_TARGET_OPERATOR_ID_.mvc",
+URL_PARSE_INVOICE = "./TerminalUI/Home/GetFieldsMapByAnswerData/500381.mvc",
+URL_CABINET_XML_SUPPLIER = "./TerminalUI/Cabinet/PrivateArea.mvc",
+AMOUNT_DIFF_REQUEST_ENABLED = "1",
+REQUIRED_FIELD_POSITION = "2",
+FORCE_SHOW_DLG_BARCODE = "1",
+DLG_BARCODE_TITLE = "Штрих код",
+DLG_BARCODE_DESCRIPTION = "Считайте штрих-код с помощью сканера или введите на клавиатуре",
+BTN_PUT_CASH_CHANGE_TITLE = "Внимание! Если у Вас денег меньше, чем сумма к внесению, Вы можете, нажав эту кнопку, выбрать другую услугу для оплаты.",
+TIMEOUT_ULTIMATE_MILLISECONDS = "600000",
+TIMEOUT_ULTIMATE_ENABLED = "1",
+INTERVAL_DEVICE_STATE_POLLING_MILLISECONDS = "60000",
+ENABLE_TRIPLE_SCREEN_TIMEOUT_ERROR = "0",
+TRIPLE_SCREEN_PANEL_TIMEOUT_TARGET_PAGE = "MainMenu",
+MAX_COUNT_SCREEN_PANEL_IDLE_TIMEOUT = "1",
+SHOW_FEEDBACK_STRIP_MAIN_MENU = "0",
+SHOW_FEEDBACK_STRIP_PAY_SERVICES = "0",
+SHOW_FEEDBACK_STRIP_GROUP_MENU = "0",
+SHOW_BANNER_TOP_MAIN_MENU = "1",
+SHOW_BANNER_TOP_PAY_SERVICES = "1",
+SHOW_BANNER_TOP_GROUP_MENU = "1",
+ADJUST_MAIN_MENU_BUTTONS_CENTER = "1",
+SHOW_WAIT_DLG_WHEN_CHECKING_OPERATOR_RECEIPT_REQUIREMENT = "0",
+NAVIGATING_SHOW_WAIT_DLG_ENABLED = "1",
+NAVIGATING_SHOW_SHADOW_ENABLED = "1",
+NAVIGATING_SHOW_SMTH_DELAY_MILLISECONDS = "1",
+DLG_IDLE_TIMEOUT_ENABLED = "1",
+DLG_IDLE_TIMEOUT_DENIED_PATHS = "/Home/MainMenu;/Home/Error;/Home/PrinterError;/Home/Unavailable;/Home/SuccessPayment",
+DLG_IDLE_TIMEOUT_CLIENT_ID = "dlgIdleTimeout",
+DLG_IDLE_TIMEOUT_TIMEOUT_MILLISECONDS = "15000",
+DLG_IDLE_TIMEOUT_SHOW_QUESTION_ICON = "1",
+Cabinet_BankServices_AccountItem_ShowDeskTypeName = "0",
+Cabinet_BankServices_AccountItem_Horizontal = "1",
+UIMessages_type_separator = ";",
+DLG_MSG_AUTO_HEIGHT_ENABLED = "0",
+PAGE_GROUP_MENU_PAGING_MODE = "ServerSide",
+PAGE_GROUP_MENU_SERVERSIDE_PAGE_SIZE = "12",
+PAGING_MAX_PAGE_BTNS_SIZE = "3",
+MAIN_MENU_HEARTBEAT_ENABLED = "1",
+MAIN_MENU_HEARTBEAT_INTERVAL = "30000",
+SUCCESS_PAYMENT_TIMEOUT_MILLISECONDS = "5000",
+CHANGE_SUM_INFO_TIMEOUT_MILLISECONDS = "30000",
+BILL_VALIDATOR_MAX_SUM_BILL_ENABLED = "1",
+BILL_VALIDATOR_MAX_SUM_BILL_MAX_SUM_MODE = "MaxSum",
+SHOW_DLG_MAX_SUM_EXCEEDED = "1",
+SHOW_DLG_BILL_INVALID = "1",
+DLG_INVALID_BILL_TIMEOUT = "10000",
+DLG_MAX_SUM_EXCEEDED_TIMEOUT = "10000",
+CHANGE_SUM_AUTO_FLUSH_TIMEOUT = "45000",
+CHANGE_SUM_AUTO_FLUSH_PROVIDER_ID = "198806021615",
+CHANGE_SUM_AUTO_FLUSH_ENABLED = "0",
+CHANGE_SUM_PAGE_ENABLED = "1",
+CHANGE_SUM_INFO_PAGE_SHOW_SUCCESS_PAYMENT_BLOCK = "0",
+BILL_VALIDATOR_AUTO_CLOSE_ENABLED = "1",
+OMIT_BARCODE_SCANNER_NOT_OPERABLE = "1",
+SCROLL_STEP_OFFSET = "50",
+CARD_KCV_LENGTH = "6",
+CARD_TERMINAL_ID_LENGTH = "7",
+CABINET_DESK_TOP_GROUP_MENU_FORCE_SHOWN = "0",
+CABINET_DESK_TOP_GROUP_MENU_FORCE_HIDDEN = "1",
+BANK_CABINET_SHOW_ALL_ACCOUNTS_SINGLE_GROUP = "1",
+CABINET_RETURN_TO_DESK_AFTER_PAYMENT = "1",
+LOG_GUID_CHANGE_SUM = "cce7d90a-24ac-49ee-8908-c9ef7fc5d446",
+CLIENTSIDE_LOGGER_LEVEL = "debug;trace;info;warn;error;fatal",
+AUTO_PAYMENT_AFTER_TIMEOUT_ENABLED = "1",
+FORCED_PAYMENT_AFTER_TIMEOUT_ENABLED = "1",
+BILL_VALIDATOR_NOT_OPERABLE_BLOCK_ENABLED = "1",
+PAYMENT_GLOBAL_MAX_SUM_MODE = "RestrictByEntireAmount",
+PAYMENT_GLOBAL_MAX_SUM_ENABLED = "0",
+PAYMENT_GLOBAL_MAX_SUM = "15000",
+CONFIRM_TEXT_PRINTING = "0",
+PIN_PAD_ACTIONS_FOR_DLG_BTNS_ENABLED = "1",
+SAVE_MONEY_TO_CHANGESUM_ON_FAILED_PAYMENT = "0",
+PRINTER_TYPE = "TEXT",
+OPERATOR_TITLE_CARD_RECHARGE = "Пополнение карты",
+CARD_RECHARGE_FIELD_TITLE_CARD_NUMBER = "Номер карты",
+CARD_RECHARGE_FIELD_TITLE_BAL_AMOUNT = "Остаток средств",
+CARD_RECHARGE_PROPER_REQUEST_USED = "0",
+LABEL_BTN_CARD_RECHARGE = "Пополнить мою карту",
+LABEL_BTN_CARD_BALANCE = "Мой баланс";
+</script>
+        <script type="text/javascript">      
+            var _layoutPage = null,
+                URL_MAINMENU = "./TerminalUI/Home/MainMenu.mvc",
+                URL_ERROR = "./TerminalUI/Home/Error.mvc",
+                PATH_ERROR = "./TerminalUI/Home/Error.mvc",
+                urlCabinetSignOut = "./TerminalUI/Cabinet/SignOut.mvc",
+                urlPrinterError = "./TerminalUI/Home/PrinterError.mvc",
+                URL_WRITE_CLIENT_SIDE_LOG = "./TerminalUI/Log/WriteClientSideLog.mvc",
+                URL_WRITE_CLIENT_SIDE_LOG_BATCH = "./TerminalUI/Log/WriteClientSideLogBatch.mvc",
+                URL_CABINET_ADD_OPERATOR = "./TerminalUI/Cabinet/AddOperator.mvc",
+                URL_CABINET_CHECK_SAME_OPERATOR_ACCOUNT = "./TerminalUI/Cabinet/CheckSameOperatorAccount.mvc",
+                cardCaptureTimeout = 120000,
+                pointNumber = 2441,
+                IS_CABINET_SESSION = isCabinetSession = false,
+                billValidatorAmount = 0,
+                URL_CARD_SET_POSITION = "./TerminalUI/Card/SetCardPosition.mvc",
+                SMART_CLIENT_MANAGER_REQUEST_TIMEOUT_MILLISECONDS = 60000;
+ 
+            layoutMisc();
+        </script>       
+        <script type="text/javascript" src="./TerminalUI/scripts/waitmsgmanager.js?v=20150624100508"></script>
+        
+        <script type="text/javascript" src="./TerminalUI/scripts/pages/clientsidepage.js?v=20150624095002"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/timeoutmanager.js?v=20150624100422"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/defaulttimeoutmanager.js?v=20150624100422"></script>
+        <script type="text/javascript" src="./TerminalUI/scripts/pages/layoutpage.js?v=20150624095002"></script>
+		<script type="text/javascript">
+		    performUltimateBootstrap();
+		</script>
+        <script type="text/javascript">
+            var CurrentSessionKey = TerminalUI.CurrentSessionKey = "20170822230858762341";
+            SmartClientManager.setSessionKey(CurrentSessionKey);
+        </script>
+ 
+        
+ 
+<script type="text/javascript" src="./TerminalUI/scripts/smartclientmanagerextensions/keyboardpinpadbridge.js?v=20150623151430"></script> 
+        
+        <script type="text/javascript" src="./TerminalUI/scripts/dlgs/dlgmsg.js?v=20150624100508"></script>
+<script type="text/javascript" src="./TerminalUI/scripts/dlgs/dlgmsgmanager.js?v=20150624100508"></script>
+	
+        
+    
+    
+ 
+<script type="text/javascript"> 
+    SmartClientManager.writeStateToLog("Выполнен переход на страницу &quot;Ввод полей для оплаты услуги Вход по номеру договора&quot;.");
+</script>
+    
+    <script type="text/javascript" src="./TerminalUI/scripts/fieldmanager.js?v=20150623151430"></script>
+    <script type="text/javascript" src="./TerminalUI/scripts/fieldmanagercollection.js?v=20150624100508"></script>
+    <script type="text/javascript" src="./TerminalUI/scripts/utils/operatorfieldseditingutil.js?v=20150608132510"></script>
+    <script type="text/javascript" src="./TerminalUI/scripts/fieldmanagers/currencyfieldmanager.js?v=20150624100508"></script>
+    <script type="text/javascript" src="./TerminalUI/scripts/fieldmanagers/currencyfractionalpartautohidefieldmanager.js?v=20150624100508"></script>
+    
+<script type="text/javascript" src="./TerminalUI/scripts/maskedfieldmanager.js?v=20150624100508"></script>    <link href="./TerminalUI/Content/CSS/btn_operators.css?v=20150911130208" rel="stylesheet" type="text/css" />
+ 
+    <link href="./TerminalUI/Themes/otp-bank/CSS/Field.css?v=20150219121728" rel="stylesheet" type="text/css" />
+    <link href="./TerminalUI/Content/CSS/PinPad.css?v=20150226101126" rel="stylesheet" type="text/css" />
+    <link href="./TerminalUI/Themes/otp-bank/CSS/Enum.css?v=20130620155400" rel="stylesheet" type="text/css" />
+        <script type="text/javascript" src="./TerminalUI/scripts/payment/operatormanager.js?v=20150624100508"></script>
+    <script type="text/javascript">
+        var operatorId = 500381;
+        var firstFieldId = 100;
+        var barcodeFieldIds = [];
+        var isBarcodeAvailable = false;
+        var barcodeFieldManager = null;
+        var IS_CABINET_SIGN_IN_FIELDS_TOGETHER = true;
+        var barcodeRequiredLength = 0;
+        var IS_FIELDS_CHECKING_ENABLED = false,
+            IS_INVOICE_SEARCH_ENABLED = false,
+            URLGetFieldsMapByAnswerData = "./TerminalUI/Cabinet/GetFieldsMapByAnswerData/500381.mvc",
+            isReedit = false,
+            urlParseBarcodeText = "./TerminalUI/Home/ParseBarcode.mvc",
+            limit = {"Min":0,"Max":15000},
+            barcodeMinLength = 0,
+            operatorInstance = {"IsPrivate":true,"Name":"Вход по номеру договора","ImageFileName":"lk3.png","IsTitleShown":true,"NameForCheque":"","PaymentTarget":"","ChequeInstance":null,"ChequeRequirementInstance":{"Policy":"warn","IsPolicyIgnore":false},"Fields":[{"IsInvoiceSearch":false,"IsReadOnly":false,"IsHidden":false,"IsInfoOnly":false,"IsAllowReedit":false,"IsSecrete":false,"IsCrypt":false,"IsName":false,"IsRequired":true,"Type":"masked","MinLength":0,"MaxLength":0,"BarcodeInstance":null,"Title":"Номер договора","Name":null,"Description":"","Mask":"**********","Rule":null,"Lunp":0,"Tags":"","Details":1,"Preview":1,"IsPrintedOnReceipt":true,"Payment":1,"Amount":null,"EnumCollection":null,"Value":null,"IsWarning":false,"IsEnum":false,"IsMaskUsed":true,"IsAmountField":false,"IsStrongAmountField":false,"IsNameRequired":false,"ID":100},{"IsInvoiceSearch":false,"IsReadOnly":false,"IsHidden":false,"IsInfoOnly":false,"IsAllowReedit":false,"IsSecrete":true,"IsCrypt":false,"IsName":false,"IsRequired":true,"Type":"integer","MinLength":3,"MaxLength":3,"BarcodeInstance":null,"Title":"Телекод","Name":null,"Description":"\u003cfont color=\"red\"\u003eПоследние 3 цифры номера паспорта. Блокируется после трехкратного неверного ввода! Чтобы разблокировать или изменить телекод позвоните в контакт-центр.\u003c/font\u003e","Mask":null,"Rule":null,"Lunp":0,"Tags":"","Details":1,"Preview":1,"IsPrintedOnReceipt":true,"Payment":1,"Amount":null,"EnumCollection":null,"Value":null,"IsWarning":false,"IsEnum":false,"IsMaskUsed":false,"IsAmountField":false,"IsStrongAmountField":false,"IsNameRequired":false,"ID":101}],"ProcessorInstance":{"ID":200,"IsOffline":true,"IsProvidesOwnAccount":true},"Comissions":[{"Value":0.5,"IsPercentages":true,"IsWithoutComission":false,"RawValue":"0.5%","Min":0,"Max":0,"Day":1,"Time":0}],"ComissionsCabinet":[{"Value":0.5,"IsPercentages":true,"IsWithoutComission":false,"RawValue":"0.5%","Min":0,"Max":0,"Day":1,"Time":0}],"RestrictionsInstance":{"Min":0,"Max":15000},"Org":[{"Key":"bank_name","Value":""}],"IsWithoutComission":false,"HasOwnRequisites":true,"ID":500381},
+            operatorFieldMap = {"field100":"","field101":""},
+            operatorManager = new OperatorManager(operatorInstance, operatorFieldMap),
+            MAX_SUM_EXCEEDED_ERROR_MSG = "Введенная сумма превышает допустимый лимит с учетом комиссии!",
+            MIN_SUM_NOT_REACHED_ERROR_MSG = "Введенная сумма менее минимально допустимой!",
+            FORCE_SHOW_DLG_BARCODE = 1,
+            OPERATOR_ITEM_TARGET = "cabinet_otp";            
+    </script>
+    <script type="text/javascript" src="./TerminalUI/scripts/pages/home/multiplefieldsoperator.js?v=20150623151430"></script>
+    <link href="./TerminalUI/Themes/otp-bank/CSS/Pages/Home/MultipleFieldsOperator.css?v=20131009144100" rel="stylesheet" type="text/css" />
+    
+    </head>
+    <body>
+
+<style type="text/css">
+#divPersonalOffer, #divPersonalOfferAgreed {
+border:solid 5px #00aa00; position:absolute;left:0;top:0;width:100%;height:100%; z-index:2; display:none; background-color:white; color:black;
+box-sizing: border-box;
+}
+#divPersonOfferContent, #divPersonOfferAgreedContent {
+padding: 50px;
+font-size:2em;
+color: #777;
+}
+#divPersonOfferAgreedContent {
+	padding: 100px;
+	font-size:3em;
+}
+#divPersonOfferAgreedContent h1 {
+color: #00aa00;
+}
+#divPersonalOfferAgreed .fs-btn-offer {
+	
+}
+#divPersonOfferContent li {
+	margin-top:20px;
+}
+.fs-btn-offer {
+color: white;
+font-size:2em;
+ padding:20px 100px;
+ margin:10px 50px;
+ border:0;
+}
+.fs-btn-offer-positive {
+ background-color: #00aa00;
+}
+.fs-btn-offer-negative {
+ background-color: orange;
+}
+</style>
+
+<div id="divPersonalOffer" style="">
+
+    <div id="divPersonOfferContent">
+
+    </div>
+    <div style="position: absolute; bottom:0; left:0; width:100%; height: 200px; text-align:center;">
+		<button class="fs-btn-offer fs-btn-offer-positive" type="button" id="btnCabinetOfferPositive">Мне это интересно</button>		
+		<button class="fs-btn-offer fs-btn-offer-negative" type="button" id="btnCabinetOfferNegative">Пока не интересно</button>
+    </div>
+</div>
+
+
+<div id="divPersonalOfferAgreed" style="">
+
+    <div id="divPersonOfferAgreedContent">
+
+    </div>
+    <div style="position: absolute; bottom:0; left:0; width:100%; height: 200px; padding-left:50px">
+		<button class="fs-btn-offer fs-btn-offer-positive" type="button" id="btnCabinetOfferAgreedPositive">Продолжить работу</button>	
+    </div>
+</div>
+
+<script id="templatePersonalOffer">
+	
+	<h1><%= name %> <%= surname %></h1>
+	<h1><%= title %></h1>
+	
+	<div>
+	
+		<div style="float:left; width:50%;">
+			<h4><%= title_description %></h4>
+			<ul>
+				<li><%= bullit1 %></li>
+				<li><%= bullit2 %></li>
+				<li><%= bullit3 %></li>
+			</ul>
+		</div>
+		
+		<div style="float:right; width:50%;  text-align:center">
+		
+		
+			<h4><%= dop_text_1 %></h4>
+			<h1><%= score_amount %> <%= score_currency %></h1>
+			
+			<h4><%= dop_text_2 %></h4>
+			<h1><%= actual_offer_date %></h1>
+		
+		</div>
+	
+	
+	</div>
+	
+	
+</script>
+
+<script id="templatePersonalOfferAgreed">
+	
+	
+	<h1><%= success_title %></h1>
+	
+	
+	<h3><%= success_text %></h3>
+	
+	
+	<h1><%= bank_phone %></h1>
+</script>
+
+
+<script>
+
+var answerDataFake = "<?xml version=\"1.0\" encoding=\"Windows-1251\"?><root><account provider_id=\"500385\"><fields><field name=\"Название продукта\" id=\"199\" preview=\"1\" value=\"Кредит\" payment=\"1\" cheque=\"1\" details=\"1\" hidden=\"0\"/><field id=\"100\" details=\"0\" payment=\"1\" cheque=\"1\" preview=\"0\" hidden=\"1\" name=\"Идентификатор счета\" value=\"40817810900167325577-3\"/><field id=\"101\" payment=\"1\" cheque=\"1\" preview=\"0\" details=\"1\" hidden=\"0\" name=\"Номер счета\" value=\"40817810900167325577\"/><field id=\"102\" details=\"0\" payment=\"1\" cheque=\"1\" preview=\"0\" hidden=\"1\" name=\"Тип счета\" value=\"POCR\"/><field id=\"103\" preview=\"1\" payment=\"1\" cheque=\"1\" details=\"1\" hidden=\"0\" name=\"Номер договора\" value=\"2616984630\"/><field id=\"104\" payment=\"1\" cheque=\"1\" preview=\"0\" details=\"1\" hidden=\"0\" name=\"Дата открытия договора\" value=\"14.11.2013\"/><field id=\"105\" payment=\"1\" cheque=\"1\" preview=\"0\" details=\"1\" hidden=\"0\" name=\"Сумма просроченной задолженности\" value=\"0\"/><field id=\"106\" payment=\"1\" cheque=\"1\" preview=\"0\" details=\"1\" hidden=\"0\" name=\"Штраф по просроченной задолженности\" value=\"0\"/><field id=\"107\" payment=\"1\" cheque=\"1\" preview=\"0\" details=\"1\" hidden=\"0\" name=\"Сумма очередного платежа с учетом задолженности \" value=\"2564.66\"/><field id=\"108\" payment=\"1\" cheque=\"1\" preview=\"0\" details=\"1\" hidden=\"0\" name=\"Оплатить до\" value=\"14.11.2014\"/></fields><operations><group><name>Доступные операции:</name><operation name=\"Пополнение наличными\" task=\"simplePayment\"/></group></operations></account><account provider_id=\"500386\"><fields><field name=\"Название продукта\" id=\"199\" preview=\"1\" value=\"Карта\" payment=\"1\" cheque=\"1\" details=\"1\" hidden=\"0\"/><field id=\"100\" details=\"0\" payment=\"1\" cheque=\"1\" preview=\"0\" hidden=\"1\" name=\"Идентификатор счета\" value=\"40817810300056473761-3\"/><field id=\"101\" payment=\"1\" cheque=\"1\" preview=\"0\" details=\"1\" hidden=\"0\" name=\"Номер счета\" value=\"40817810300056473761\"/><field id=\"102\" details=\"0\" payment=\"1\" cheque=\"1\" preview=\"0\" hidden=\"1\" name=\"Тип счета\" value=\"CACR\"/><field id=\"103\" preview=\"1\" payment=\"1\" cheque=\"1\" details=\"1\" hidden=\"0\" name=\"Номер карты\" value=\"5268393571551386\"/><field id=\"104\" payment=\"1\" cheque=\"1\" preview=\"0\" details=\"1\" hidden=\"0\" name=\"Минимальный платеж\" value=\"0\"/><field id=\"105\" payment=\"1\" cheque=\"1\" preview=\"0\" details=\"1\" hidden=\"0\" name=\"Сумма просроченной задолженности\" value=\"0\"/><field id=\"106\" payment=\"1\" cheque=\"1\" preview=\"0\" details=\"1\" hidden=\"0\" name=\"Оплатить до\" value=\"28.03.2014\"/></fields><operations><group><name>Доступные операции:</name><operation name=\"Пополнение наличными\" task=\"simplePayment\"/></group></operations></account><Campaign_Offer><Status>OK</Status><Error_Code>code123</Error_Code><Error_Text>text456</Error_Text><Campaign><Campaign_ID>Campaign_ID0</Campaign_ID><Campaign_Name>Campaign_Name0</Campaign_Name><Product_Name>Product_Name0</Product_Name></Campaign><Offer><Offer_ID>Offer_ID0</Offer_ID><Priority_Offers>0</Priority_Offers><Brief_Description_Offers>Brief_Description_Offers0</Brief_Description_Offers><Detailed_Description_Offers>Получите новый кредит с меньшей ставкой и закройте за его счет старый!</Detailed_Description_Offers><Product_Type>Product_Type0</Product_Type><Product_ID>Product_ID0</Product_ID><Valid_From>Valid_From0</Valid_From><Valid_To>07.07.2016</Valid_To><Member_Param_Id>Member_Param_Id0</Member_Param_Id><Member_Id>Member_Id0</Member_Id><Refin_Agree_Num>Refin_Agree_Num0</Refin_Agree_Num><Group_Offer_Id>Group_Offer_Id0</Group_Offer_Id><Ctrl_Penalties_Forgive_Flg>Ctrl_Penalties_Forgive_Flg0</Ctrl_Penalties_Forgive_Flg><Secur_Depos_Excepted_Amnt>Secur_Depos_Excepted_Amnt0</Secur_Depos_Excepted_Amnt><Agreement_Id>Agreement_Id0</Agreement_Id><Card_Id>Card_Id0</Card_Id><Term_Ins>Term_Ins0</Term_Ins><Communications><Template_Communications_ID>Template_Communications_ID0</Template_Communications_ID><params><param1>Сергей</param1><param2>Викторович</param2><param3>Для Вас – особые условия по кредиту</param3><param4>Нужен только Ваш паспорт и 30 минут Вашего времени</param4><param5>Без комиссий, без залога</param5><param6>В любом отделении ОТП Банка</param6><param7>Сумма нового кредита</param7><param8>Предложение действует до</param8><param9>Мы перезвоним и подберем подходящие условия по кредиту в ближайшее время!</param9></params></Communications><Offer_Status>Offer_Status0</Offer_Status></Offer><Scoring><Type>Type0</Type><Term_Loan>0</Term_Loan><Rate_Loan>0</Rate_Loan><Amount>105000</Amount><Currency>Р</Currency></Scoring></Campaign_Offer><client_uid>value1</client_uid><transaction_id>value2</transaction_id></root>";
+var answerData = answerDataFake;
+							
+							var otpCampaignOfferXml = answerData.substr(answerData.indexOf("<Campaign_Offer>"), answerData.indexOf("</Campaign_Offer>") - answerData.indexOf("<Campaign_Offer>") + "</Campaign_Offer>".length);
+							var answerXmlBeforeOtpCampaignOfferXml = answerData.substr(0, answerData.indexOf("<Campaign_Offer>"));
+							var answerXmlAfterOtpCampaignOfferXml = answerData.substr(answerData.indexOf("</Campaign_Offer>") + "</Campaign_Offer>".length);
+							
+							var answerXmlWithoutOtpCampaignOfferXml = answerXmlBeforeOtpCampaignOfferXml + answerXmlAfterOtpCampaignOfferXml;
+							
+							var answerXmlClean = answerXmlWithoutOtpCampaignOfferXml;
+							
+							var transactionId = 0;
+							var clientUid = 0;
+							var clientTransactionIdsXml = "";
+							
+							if (answerXmlClean.indexOf("<transaction_id>") && answerXmlClean.indexOf("<client_uid>")) {
+								clientTransactionIdsXml = answerXmlClean.substr(answerXmlClean.indexOf("<client_uid>"), answerXmlClean.indexOf("</transaction_id>") - answerXmlClean.indexOf("<client_uid>") + "</transaction_id>".length);
+								answerXmlClean = answerXmlClean.substr(0, answerXmlClean.indexOf(clientTransactionIdsXml)) + "</root>";
+								
+							}
+							
+							console.log("otpCampaignOfferXml:  "+otpCampaignOfferXml);
+							console.log("answerXmlClean:  "+answerXmlClean);
+							console.log("clientTransactionIdsXml:  "+clientTransactionIdsXml);
+							
+							window.localStorage.setItem("cabinetAnswerXml", answerXmlClean);
+							window.localStorage.setItem("cabinetOTPCampaignOfferXml", otpCampaignOfferXml);
+							window.localStorage.setItem("cabinetOTPClientTransactionIdsXml", clientTransactionIdsXml);
+							
+							//
+							var showOTPCampaignOffer = false;
+							
+							
+							
+							var cabinetOTPCampaignOfferXml = window.localStorage.getItem("cabinetOTPCampaignOfferXml");
+							var cabinetOTPClientTransactionIdsXml = window.localStorage.getItem("cabinetOTPClientTransactionIdsXml");
+							
+							
+							if (cabinetOTPCampaignOfferXml && cabinetOTPCampaignOfferXml.length) {
+								showOTPCampaignOffer = true;
+							}
+							
+							if (showOTPCampaignOffer && TerminalUI.UISettingsMap["CABINET_OTP_CAMPAIGN_SHOW_OFFER_ENABLED"] !== "1") {
+								SmartClientManager.writeStateToLog("Отключена функция (CABINET_OTP_CAMPAIGN_SHOW_OFFER_ENABLED=0) отображения в кабинете предложения Оффера ОТП "+offerId+" кампании " + campaignId);
+							}
+							showOTPCampaignOffer = showOTPCampaignOffer && TerminalUI.UISettingsMap["CABINET_OTP_CAMPAIGN_SHOW_OFFER_ENABLED"] == "1";
+							
+							var $clientTransactionIdsXml = $("<root>" + cabinetOTPClientTransactionIdsXml + "</root>");
+												
+							transactionId = $clientTransactionIdsXml.find("transaction_id").text();
+							clientUid = $clientTransactionIdsXml.find("client_uid").text();	
+							
+							var $otpCampaignOffer = $(otpCampaignOfferXml);
+							var errorText = $otpCampaignOffer.find("Error_Text").text();
+							
+							if (errorText && errorText.indexOf("ORA") !== -1) {
+								SmartClientManager.writeStateToLog("Отображение оффера ОТП кампании НЕ будет из-за ошибки: " + errorText);
+								//return;
+							}
+							
+							var campaignId = $otpCampaignOffer.find("Campaign Campaign_ID").text();
+							var offerId = $otpCampaignOffer.find("Offer Offer_ID").text();
+							
+							var $uiParams = $otpCampaignOffer.find("Offer Communications params");
+			
+var offerParams = {
+	name: "Сергей",
+	surname: "Викторович",
+	title: "Для Вас – особые условия по кредиту",
+	title_description: "Получите новый кредит с меньшей ставкой и закройте за его счет старый!",
+	bullit1: "Нужен только Ваш паспорт и 30 минут Вашего времени.",
+	bullit2: "Без комиссий, без залога.",
+	bullit3: "В любом отделении ОТП Банка.",
+	dop_text_1: "Сумма нового кредита",
+	dop_text_2: "Предложение действует до",
+	actual_offer_date: "24.08.2017",
+	score_amount: "105 000",
+	score_currency: "&#8381;"
+};
+
+var offerAgreedParams = {
+	success_title: "ОТЛИЧНО",
+	success_text: "Мы перезвоним и подберем подходящие условия по кредиту в ближайшее время!",
+	bank_phone: "8-800-100-55-55"
+
+};
+
+offerParams.name = $uiParams.find("param1").text();
+offerParams.surname = $uiParams.find("param2").text();
+offerParams.title = $uiParams.find("param3").text();
+offerParams.title_description = $otpCampaignOffer.find("Offer Detailed_Description_Offers").text();
+offerParams.bullit1 = $uiParams.find("param4").text();
+offerParams.bullit2 = $uiParams.find("param5").text();
+offerParams.bullit3 = $uiParams.find("param6").text();
+offerParams.dop_text_1 = $uiParams.find("param7").text();
+offerParams.dop_text_2 = $uiParams.find("param8").text();
+offerParams.actual_offer_date = $otpCampaignOffer.find("Offer Valid_To").text();
+offerParams.score_amount = $otpCampaignOffer.find("Scoring Amount").text();
+offerParams.score_currency = $otpCampaignOffer.find("Scoring Currency").text();
+
+offerAgreedParams.success_text = $uiParams.find("param9").text();
+
+function sendCabinetOTPCampaignOfferClientFeedback(clientDecision, successHandler) {
+	CabinetManager.sendCabinetOTPCampaignOfferClientFeedback({
+		fieldsMap: {
+			field100: transactionId,
+			field101: campaignId,
+			field102: offerId,
+			field103: clientDecision
+		},
+		success: function() {
+			if (successHandler) successHandler();
+		}
+	});
+};
+
+    $(function() {
+		
+        if (showOTPCampaignOffer) {
+		
+			SmartClientManager.writeStateToLog("Отображение в кабинете предложения Оффера ОТП "+offerId+" кампании " + campaignId);
+		
+            var templateHtml = $("#templatePersonalOffer").html();
+            var personalOfferHtml = _.template(templateHtml)(offerParams);
+            $("#divPersonOfferContent").html(personalOfferHtml);
+            $("#divPersonalOffer").fadeIn("fast");
+        }
+		
+		$("#btnCabinetOfferPositive").click(function() {
+			
+			SmartClientManager.writeStateToLog("Клиент кликнул по кнопке Интересно в предложении Оффера ОТП "+offerId+" кампании " + campaignId);
+			
+			ClientSidePage.layoutPage.showWaitDlg();
+			sendCabinetOTPCampaignOfferClientFeedback(1, function() {
+				SmartClientManager.writeToLog("sendCabinetOTPCampaignOfferClientFeedback with POSITIVE client decision sent SUCCESSFULLY");
+				
+				ClientSidePage.layoutPage.hideWaitDlg();
+				
+				$("#divPersonalOffer").fadeOut("fast");
+				var templateHtml = $("#templatePersonalOfferAgreed").html();
+				var personalOfferAgreedHtml = _.template(templateHtml)(offerAgreedParams);
+				$("#divPersonOfferAgreedContent").html(personalOfferAgreedHtml);
+				$("#divPersonalOfferAgreed").fadeIn("fast");
+			});
+			
+		});
+		
+		$("#btnCabinetOfferNegative").click(function() {
+			SmartClientManager.writeStateToLog("Клиент кликнул по кнопке НЕ Интересно в предложении Оффера ОТП "+offerId+" кампании " + campaignId);
+			$("#divPersonalOffer").fadeOut("slow");
+
+			ClientSidePage.layoutPage.showWaitDlg();			
+			sendCabinetOTPCampaignOfferClientFeedback(2, function() {
+				SmartClientManager.writeToLog("sendCabinetOTPCampaignOfferClientFeedback with NEGATIVE client decision sent SUCCESSFULLY");
+				
+				ClientSidePage.layoutPage.hideWaitDlg();	
+			});
+		});
+		
+		$("#btnCabinetOfferAgreedPositive").click(function() {
+			SmartClientManager.writeStateToLog("Клиент кликнул по кнопке Прододжить в предложении Оффера ОТП "+offerId+" кампании " + campaignId);
+			$("#divPersonalOfferAgreed").fadeOut("slow");
+		});
+    });
+</script>
+
+        <script type="text/javascript" src="./TerminalUI/scripts/devices/devicestatelogging.js?v=20150623151430"></script>
+        <script type="text/javascript">
+            $(function(){
+                ChangeSumManager.Instance.updateBannerAsync();
+            });
+        </script>
+                
+    </body>
+</html>
+
+,
+				
+        sendCabinetOTPCampaignOfferClientDecision: function (passedArgs) {
+            var smartClientManager = SmartClientManager;
+            var loggingService = TerminalUI.loggingService;
+            var defaultArgs = {
+                operatorId: 0,
+                fieldsMap: {},
+                success: function (cabinetXml) { },
+                error: function (errorCode) { },
+                knownError: function (errorCode, userMsg) { },
+                unknownError: function (errorCode) { }
+            };
+            var args = $.extend({}, defaultArgs, passedArgs);
+            var operatorId = args.operatorId;
+            var fieldsMap = args.fieldsMap;
+            var successCallback = args.success;
+            var errorCallback = args.error;
+            var knownErrorCallback = args.knownError;
+            var unknownErrorCallback = args.unknownError;
+
+            var reqType = 127;
+            smartClientManager.sendOnlineRequestAsync({
+                request: {
+                    type: reqType,
+                    operatorId: operatorId,
+                    fields: fieldsMap
+                },
+                callback: function (args) {
+                    var result = args.result;
+                    var responseMap = args.responseMap;
+                    var responseData = args.responseData;
+                    if (result == GatewayResults.SUCCESS) {
+						
+                        successCallback(answerData);
+                    } else {
+                        var errorCode = responseMap.ERROR;
+                        var keyGatewayErrorMsg = "Gateway_ErrorCode_" + errorCode;
+                        var gatewayErrorMsg = TerminalUI.UIMessageMap.hasOwnProperty(keyGatewayErrorMsg) ? TerminalUI.UIMessageMap[keyGatewayErrorMsg] : null;
+                        if (gatewayErrorMsg != null) {
+                            loggingService.warn("The \"%1\" is for the %2 error code.", gatewayErrorMsg, errorCode);
+                            smartClientManager.writeStateErrorToLog(formatMsg("При совершении запроса в шлюз Отправка решения клиента на отображение оффера ОТП в кабинете был получен ответ от сервера: \"%1\" (%2)", gatewayErrorMsg, errorCode));
+                        }
+                        loggingService.trace("The error code is %1.", errorCode);
+                        loggingService.trace("Triggering the common error callback with error code = %1", errorCode);
+                        errorCallback(errorCode);
+                        if (gatewayErrorMsg == null) {
+                            loggingService.trace("Triggering the unknown error callback with error code = %1", errorCode);
+                            unknownErrorCallback(errorCode);
+                        } else {
+                            knownErrorCallback(errorCode, gatewayErrorMsg);
+                            loggingService.trace("Triggering the known error callback with error code = %1 and msg = %2", errorCode, gatewayErrorMsg);
+                        }
+                    }
+                }
+            });
+        },
+        
+        
+  <entry key="CABINET_OTP_CAMPAIGN_SHOW_OFFER_ENABLED">1</entry>
