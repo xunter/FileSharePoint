@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="charset" content="utf-8" />
+	<title>Расчет платы электроэнергии по счетчику с 3мя показаниями</title>
+	
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<body>
+
+	<header>
+	
+	<div class="container">
+		<strong>Расчет платы электроэнергии по счетчику с 3мя показаниями</strong>
+	</div>
+	</header>
+	
+	
+	<div class="container">
+	
+	<hgroup>
+		<h1>Расчет платы электроэнергии по счетчику с 3мя показаниями</h1>
+		<h2></h2>
+	</hgroup>
+	
+	<div  style="font-size:1.5em;">
+	<div class="row">
+		<div class="col-md-4">
+			<div class="well">
+			<strong style="text-align:center; color:blue;">Привлечь инвестиции</strong>
+			
+			<p style="font-size:8em; text-align:center; color:green;"><span class="fa fa-signal"></span></p>
+			
+			<p>Фермеры обменивают выпущенные токены на реальные деньги и тем самым получают инвестиции в свои хозяйства</p>
+			<a href="#">Выпускайте токены своей фермы и привлекайте реальные деньги!</a>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="well">
+			<strong style="text-align:center; color:blue;">Заняться фермерским хозяйством</strong>
+			
+			<p style="font-size:8em; text-align:center; color:green;"><span class="fa fa-industry"></span></p>
+			
+			<p>Любой желающий не имея возможности занятся реальным хозяйством может вложиться в любого фермера участника биржи - купить токенов на бирже</p>
+			
+			<a href="#">Станьте частью фермерского хозяйства и заработайте денег!</a>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="well">
+			<strong style="text-align:center; color:blue;">Поиск поставщиков и сбыта</strong>
+			
+			<p style="font-size:8em; text-align:center; color:green;"><span class="fa fa-handshake-o"></span></p>
+			
+			<p>Фермеры нуждаются в поставщиках и реализации своей продукции - биржа на основе своей базы подберет лучшие предложения других фермеров</p>
+			
+			<a href="#">Найдите нужного и выгодного поставщика и реализуйте свою продукцию через биржу!</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-md-4">
+			<div class="well">
+			<strong style="text-align:center; color:blue;">Биржа прозрачна, бесплатна и открыта</strong>
+			
+			<p style="font-size:8em; text-align:center; color:green;"><span class="fa fa-circle-o"></span></p>
+			
+			<p>Участники - фермеры формируют биржу без регулятора</p>
+			
+			<a href="#">Участвуйте на бирже тем самым развивая ее!</a>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="well">
+			<strong style="text-align:center; color:blue;">Безопасность и децентрализация</strong>
+			
+			<p style="font-size:8em; text-align:center; color:green;"><span class="fa fa-braille"></span></p>
+			
+			<p>Блокчейн и криптография обеспечивают защищенность и целостность данных и операций на бирже</p>
+			
+			<a href="#">Действуйте как Вам хочется!</a>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="well">
+			<strong style="text-align:center; color:blue;">Эффективность</strong>
+			
+			<p style="font-size:8em; text-align:center; color:green;"><span class="fa fa-line-chart"></span></p>
+			
+			<p style="color:inherit;">Для фермеров и инвесторов выгода заключается в отсутствии высокого порога участия, бюрократии, задранных комиссиий и монополии</p>
+			
+			<a href="#">Реализуйте свои потребности на бирже фермеров!</a>
+			</div>
+		</div>
+	</div>
+	</div>
+	
+	<fieldset>
+		<legend>Расчет платы за электроэнергию</legend>
+		
+		<form class="form-inline">
+			<div class="form-group">
+				<label>Сумма T1: </label>				
+				(<input type="number" min"0" max="9999999" placeholder="Показание T1 Текущее" class="form-control" name="t1_now" /> - 
+				<input type="number" min"0" max="9999999" placeholder="Показание T1 Прошлое" class="form-control" name="t1_prev" />)
+				<input type="number" min"0" max="9999999" placeholder="Показание T1 Разница" readonly="1" class="form-control" name="t1" /> x 
+				<input type="number" min"0" max="9999999" placeholder="Тариф T1" name="t1_tarif" value="6.46" class="form-control" readonly="1" /> &#8381; = 
+				<input type="number" min"0" max="9999999" placeholder="Сумма T1" name="t1_price" value="" class="form-control" readonly="1" /> &#8381;
+			</div>
+			
+			<p></p>
+			<div class="form-group">
+				<label>Сумма T2: </label>
+				(<input type="number" min"0" max="9999999" placeholder="Показание T2 Текущее" name="t2_now" class="form-control" /> - 
+				<input type="number" min"0" max="9999999" placeholder="Показание T2 Прошлое" name="t2_prev" class="form-control" />)
+				<input type="number" min"0" max="9999999" placeholder="Показание T2 Разница" readonly="1" name="t2" class="form-control" /> x 
+				<input type="number" min"0" max="9999999" placeholder="Тариф T2" name="t2_tarif" value="1.79" class="form-control" readonly="1" /> &#8381; = 
+				<input type="number" min"0" max="9999999" placeholder="Сумма T2" name="t2_price" value="" class="form-control" readonly="1" /> &#8381;
+			</div>
+			
+			<p></p>
+			<div class="form-group">
+				<label>Сумма T3: </label>
+				(<input type="number" min"0" max="9999999" placeholder="Показание T3 Текущее" name="t3_now" class="form-control" /> - 
+				<input type="number" min"0" max="9999999" placeholder="Показание T3 Прошлое" name="t3_prev" class="form-control" />)
+				<input type="number" min"0" max="9999999" placeholder="Показание T3 Разница" readonly="1" name="t3" class="form-control" /> x 
+				<input type="number" min"0" max="9999999" placeholder="Тариф T3" name="t3_tarif" value="5.38" readonly="1" class="form-control" /> &#8381; = 
+				<input type="number" min"0" max="9999999" placeholder="Сумма T3" name="t3_price" value="" readonly="1" class="form-control" /> &#8381;
+			</div>
+			
+			<p></p>
+			
+			<div class="form-group">
+				<label>Всего: </label>
+				<input type="number" min"0" max="9999999" placeholder="Показание Всего" name="total" readonly="1" class="form-control" /> x 
+				<input type="number" min"0" max="9999999" placeholder="Тариф Среднее" name="avg_tarif" readonly="1" class="form-control" /> &#8381; = 
+				<input type="number" min"0" max="9999999" placeholder="Сумма Всего" name="total_price" readonly="1" class="form-control" /> &#8381;
+			</div>
+		
+		
+			<p></p>
+			<p>
+				<button type="button" class="btn btn-lg btn-success" id="btnCalc">Рассчитать</button>
+			</p>
+		</form>
+	</fieldset>
+	
+	<p>Актуальные тарифы по ссылке: <a target="_blank" href="http://www.mosenergosbyt.ru/website/faces/individuals/tariffs-n-payments/tariffs-msk/kvartiry-i-doma-s-gazovymi-plitami">http://www.mosenergosbyt.ru/website/faces/individuals/tariffs-n-payments/tariffs-msk/kvartiry-i-doma-s-gazovymi-plitami</a></p>
+	</div>
+	
+	
+	
+	
+	<footer>
+	
+	<div class="container">
+	</div>
+	</footer>
+	
+	<script>
+		var t1 = document.getElementsByName("t1")[0];
+		var t2 = document.getElementsByName("t2")[0];
+		var t3 = document.getElementsByName("t3")[0];
+		var t1_prev = document.getElementsByName("t1_prev")[0];
+		var t2_prev = document.getElementsByName("t2_prev")[0];
+		var t3_prev = document.getElementsByName("t3_prev")[0];
+		var t1_now = document.getElementsByName("t1_now")[0];
+		var t2_now = document.getElementsByName("t2_now")[0];
+		var t3_now = document.getElementsByName("t3_now")[0];
+		var t1_tarif = document.getElementsByName("t1_tarif")[0];
+		var t2_tarif = document.getElementsByName("t2_tarif")[0];
+		var t3_tarif = document.getElementsByName("t3_tarif")[0];
+		var t1_price = document.getElementsByName("t1_price")[0];
+		var t2_price = document.getElementsByName("t2_price")[0];
+		var t3_price = document.getElementsByName("t3_price")[0];
+		var total = document.getElementsByName("total")[0];
+		var avg_tarif = document.getElementsByName("avg_tarif")[0];
+		var total_price = document.getElementsByName("total_price")[0];
+		
+		var changeHandler = function(ev) {
+			var targetElement = ev.target;
+			
+			var t1NowNum = parseFloat(t1_now.value);
+			var t2NowNum = parseFloat(t2_now.value);
+			var t3NowNum = parseFloat(t3_now.value);
+			
+			var t1PrevNum = parseFloat(t1_prev.value);
+			var t2PrevNum = parseFloat(t2_prev.value);
+			var t3PrevNum = parseFloat(t3_prev.value);
+			
+			var t1Num = t1NowNum - t1PrevNum;
+			var t2Num = t2NowNum - t2PrevNum;
+			var t3Num = t3NowNum - t3PrevNum;
+			
+			var t1TariffNum = parseFloat(t1_tarif.value);
+			var t2TariffNum = parseFloat(t2_tarif.value);
+			var t3TariffNum = parseFloat(t3_tarif.value);
+			
+			var t1PriceNum = t1Num * t1TariffNum;
+			var t2PriceNum = t2Num * t2TariffNum;
+			var t3PriceNum = t3Num * t3TariffNum;
+			
+			var totalNum = t1Num + t2Num + t3Num;
+			var avgTariffNum = (t1TariffNum + t2TariffNum + t3TariffNum) / 3;
+			var totalPriceNum = t1PriceNum + t2PriceNum + t3PriceNum;
+			
+			t1.value = t1Num;
+			t2.value = t2Num;
+			t3.value = t3Num;
+			
+			t1_price.value = t1PriceNum;
+			t2_price.value = t2PriceNum;
+			t3_price.value = t3PriceNum;
+			
+			total.value = totalNum;
+			avg_tarif.value = avgTariffNum;
+			total_price.value = totalPriceNum;
+		};
+				
+		var textBoxes = document.getElementsByTagName("input");
+		
+		for (var i = 0; i < textBoxes.length; i++) {	
+			textBoxes[i].addEventListener("change", changeHandler);
+		}
+		
+		document.getElementById("btnCalc").addEventListener("click", changeHandler);
+		
+	</script>
+</body>
+</html>
