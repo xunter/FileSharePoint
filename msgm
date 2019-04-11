@@ -1,0 +1,14 @@
+In file vqmod/xml/category_filter_products_by_manufacturer.xml:
+
+Remove lines:
+
+<operation>
+	<search position="replace"><![CDATA[$product_total = $this->model_catalog_product->getTotalProducts($data);]]></search>
+	<add><![CDATA[]]></add>
+</operation>
+<operation>
+	<search position="before"><![CDATA[$categoryViewModel['name'] = $result['name'] . ($this->config->get('config_product_count') ? ' (' . $product_total . ')' : '');]]></search>
+	<add><![CDATA[$product_total = $this->model_catalog_product->getTotalProducts($data);]]></add>
+</operation>
+
+and try how it is working after
